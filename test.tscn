@@ -1,0 +1,182 @@
+[gd_scene load_steps=16 format=3 uid="uid://bul4k00aybsy4"]
+
+[ext_resource type="Material" uid="uid://db6nkpe80jun6" path="res://unshaded_shadows.tres" id="1_17dji"]
+[ext_resource type="Script" path="res://player_movement.gd" id="1_fvory"]
+[ext_resource type="Material" uid="uid://b3lncwbcu17c4" path="res://depth.tres" id="4_4u41y"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_bftgk"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xdsq1"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wv6eu"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_vr1di"]
+material = ExtResource("4_4u41y")
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="Environment" id="Environment_148ox"]
+background_mode = 1
+ambient_light_source = 1
+ambient_light_color = Color(0.5, 0.5, 0.5, 1)
+reflected_light_source = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_ge4ig"]
+size = Vector3(30, 1, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h66a6"]
+size = Vector3(30, 1, 30)
+
+[sub_resource type="BoxMesh" id="BoxMesh_38tud"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0qf7v"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7s41p"]
+friction = 0.66
+absorbent = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bi731"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h3ir7"]
+size = Vector3(2, 2, 2)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+texture_filter = 2
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+scale = Vector2(0.667, 0.667)
+texture = SubResource("ViewportTexture_bftgk")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48682, 1.47913, -2.568)
+floor_stop_on_slope = false
+floor_block_on_wall = false
+script = ExtResource("1_fvory")
+speed = 3
+fall_acceleration = 37
+floor_check_height = 0.05
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_xdsq1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/CharacterBody3D"]
+material_override = ExtResource("1_17dji")
+mesh = SubResource("CapsuleMesh_wv6eu")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.92388, 0.382683, 0, -0.382684, 0.923879, 0, 7.9879, 16.6304)
+projection = 1
+size = 16.237
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/Camera3D"]
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_vr1di")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport"]
+transform = Transform3D(-0.861629, 0.344192, -0.372997, 0, 0.734915, 0.678159, 0.507538, 0.584322, -0.633223, 0, 6.38182, 0)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 0.0
+shadow_reverse_cull_face = true
+directional_shadow_mode = 1
+directional_shadow_split_1 = 0.009
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport"]
+environment = SubResource("Environment_148ox")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewport"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/StaticBody3D"]
+material_override = ExtResource("1_17dji")
+mesh = SubResource("BoxMesh_ge4ig")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/StaticBody3D"]
+shape = SubResource("BoxShape3D_h66a6")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="SubViewport"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+lock_rotation = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/RigidBody3D"]
+material_override = ExtResource("1_17dji")
+mesh = SubResource("BoxMesh_38tud")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/RigidBody3D"]
+shape = SubResource("BoxShape3D_0qf7v")
+
+[node name="TestPark" type="Node3D" parent="."]
+process_mode = 4
+visible = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="TestPark"]
+transform = Transform3D(8.53011, 0, -8.58131, 0, 1, 0, 8.53011, 0, 8.58131, 36.35, 0, 0.379577)
+material_override = ExtResource("1_17dji")
+use_collision = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="TestPark"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 35.3736, 3.7353, 1.01697)
+use_collision = true
+material = ExtResource("1_17dji")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="TestPark"]
+transform = Transform3D(4.99533, 0, -5.26753, 0, 2.40508, 0, 4.99533, 0, 5.26753, 35.9967, 0.793483, -5.52212)
+use_collision = true
+material = ExtResource("1_17dji")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="TestPark"]
+transform = Transform3D(2.11681, 0, -2.11681, 0, 2.99362, 0, 2.11681, 0, 2.11681, 45.7698, -0.56519, 0.0566909)
+material_override = ExtResource("1_17dji")
+use_collision = true
+material = ExtResource("1_17dji")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="TestPark"]
+transform = Transform3D(1.98688, 0.730201, -2.11681, -1.03266, 2.80987, 0, 1.98688, 0.730201, 2.11681, 32.4835, -0.56519, 0.886955)
+material_override = ExtResource("1_17dji")
+use_collision = true
+material = ExtResource("1_17dji")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="TestPark"]
+transform = Transform3D(1.97349, 3.32889, -3.8699, -4.70776, 2.79093, 0, 1.97349, 3.32889, 3.8699, 28.8064, -0.969211, -3.02016)
+material_override = ExtResource("1_17dji")
+use_collision = true
+material = ExtResource("1_17dji")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="TestPark"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 39.3065, 0.51893, 3.33605)
+material_override = ExtResource("1_17dji")
+use_collision = true
+
+[node name="RigidBody3D" type="RigidBody3D" parent="TestPark"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 36.3902, 4.76481, -3.68481)
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_7s41p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestPark/RigidBody3D"]
+shape = SubResource("BoxShape3D_bi731")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestPark/RigidBody3D"]
+material_override = ExtResource("1_17dji")
+mesh = SubResource("BoxMesh_h3ir7")

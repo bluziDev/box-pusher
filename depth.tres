@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b3lncwbcu17c4"]
+
+[ext_resource type="Shader" path="res://depth.gdshader" id="1_olan8"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_olan8")
+shader_parameter/plane_thresh = 0.143
+shader_parameter/normal_thresh = 0.42
+shader_parameter/edge_color = Color(0, 0, 0, 1)
+shader_parameter/edge_thickness = 0.00169
