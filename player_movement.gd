@@ -39,11 +39,12 @@ func _physics_process(delta):
 	target_velocity.z = direction.z * speed
 
 	# Vertical Velocity
-	if not move_and_collide(Vector3(0,-floor_check_height,0),true): # If in the air, fall towards the floor. Literally gravity
-		target_velocity.y = target_velocity.y - (fall_acceleration * delta)
+	target_velocity.y = target_velocity.y - (fall_acceleration * delta)
+	#if not move_and_collide(Vector3(0,-floor_check_height,0),true): # If in the air, fall towards the floor. Literally gravity
+	#	target_velocity.y = target_velocity.y - (fall_acceleration * delta)
 		#pass
-	else:
-		target_velocity.y = 0
+	#else:
+	#	target_velocity.y = 0
 
 	# Moving the Character
 	#velocity = target_velocity * delta
@@ -61,7 +62,7 @@ func _physics_process(delta):
 		#cols += 1
 		#print(str(col_norm))
 		var penetration = colliding_pos - global_position
-		print(str(penetration))
+		#print(str(penetration))
 		var col_norm = (-penetration).normalized()#collision.get_normal()
 		var depen_pos = colliding_pos - penetration
 		var scaled_pen = penetration * Vector3(1,1,1 / (cam_ratio * 2))
@@ -69,6 +70,7 @@ func _physics_process(delta):
 		var v = new_colliding_pos - depen_pos
 		var dist = col_norm.dot(v)
 		global_position = new_colliding_pos - dist * col_norm #add to depen or just collide again?
+		target_velocity.y = lerpf(target_velocity.y,0,clamp(col_norm.dot(Vector3.UP),0,1))
 		#colliding_pos = global_position
 		#collision = move_and_collide(Vector3.ZERO)
 	#else:

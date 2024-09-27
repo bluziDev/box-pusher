@@ -6,6 +6,6 @@
 render_priority = 0
 shader = ExtResource("1_olan8")
 shader_parameter/plane_thresh = 0.143
-shader_parameter/normal_thresh = 0.42
+shader_parameter/normal_thresh = 0.69
 shader_parameter/edge_color = Color(0, 0, 0, 1)
-shader_parameter/edge_thickness = 0.00169
+shader_parameter/edge_thickness = 0.00105

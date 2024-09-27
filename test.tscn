@@ -1,38 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://bul4k00aybsy4"]
+[gd_scene load_steps=7 format=3 uid="uid://bul4k00aybsy4"]
 
 [ext_resource type="Material" uid="uid://db6nkpe80jun6" path="res://unshaded_shadows.tres" id="1_17dji"]
-[ext_resource type="Script" path="res://player_movement.gd" id="1_fvory"]
-[ext_resource type="Material" uid="uid://b3lncwbcu17c4" path="res://depth.tres" id="4_4u41y"]
+[ext_resource type="PackedScene" uid="uid://cnxesqjmb33bl" path="res://levels/test_park_01.tscn" id="1_t23fo"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_bftgk"]
 viewport_path = NodePath("SubViewport")
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xdsq1"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_wv6eu"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_vr1di"]
-material = ExtResource("4_4u41y")
-flip_faces = true
-size = Vector2(2, 2)
-
-[sub_resource type="Environment" id="Environment_148ox"]
-background_mode = 1
-ambient_light_source = 1
-ambient_light_color = Color(0.5, 0.5, 0.5, 1)
-reflected_light_source = 1
-
-[sub_resource type="BoxMesh" id="BoxMesh_ge4ig"]
-size = Vector3(30, 1, 30)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_h66a6"]
-size = Vector3(30, 1, 30)
-
-[sub_resource type="BoxMesh" id="BoxMesh_38tud"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_0qf7v"]
-size = Vector3(2, 2, 2)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7s41p"]
 friction = 0.66
@@ -65,65 +37,7 @@ handle_input_locally = false
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48682, 1.47913, -2.568)
-floor_stop_on_slope = false
-floor_block_on_wall = false
-script = ExtResource("1_fvory")
-speed = 3
-fall_acceleration = 37
-floor_check_height = 0.05
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/CharacterBody3D"]
-shape = SubResource("CapsuleShape3D_xdsq1")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/CharacterBody3D"]
-material_override = ExtResource("1_17dji")
-mesh = SubResource("CapsuleMesh_wv6eu")
-
-[node name="Camera3D" type="Camera3D" parent="SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 0.92388, 0.382683, 0, -0.382684, 0.923879, 0, 7.9879, 16.6304)
-projection = 1
-size = 16.237
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/Camera3D"]
-extra_cull_margin = 16384.0
-mesh = SubResource("QuadMesh_vr1di")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport"]
-transform = Transform3D(-0.861629, 0.344192, -0.372997, 0, 0.734915, 0.678159, 0.507538, 0.584322, -0.633223, 0, 6.38182, 0)
-light_indirect_energy = 0.0
-light_volumetric_fog_energy = 0.0
-shadow_enabled = true
-shadow_bias = 0.0
-shadow_normal_bias = 0.0
-shadow_reverse_cull_face = true
-directional_shadow_mode = 1
-directional_shadow_split_1 = 0.009
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport"]
-environment = SubResource("Environment_148ox")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewport"]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/StaticBody3D"]
-material_override = ExtResource("1_17dji")
-mesh = SubResource("BoxMesh_ge4ig")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/StaticBody3D"]
-shape = SubResource("BoxShape3D_h66a6")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="SubViewport"]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
-lock_rotation = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/RigidBody3D"]
-material_override = ExtResource("1_17dji")
-mesh = SubResource("BoxMesh_38tud")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/RigidBody3D"]
-shape = SubResource("BoxShape3D_0qf7v")
+[node name="TestPark01" parent="SubViewport" instance=ExtResource("1_t23fo")]
 
 [node name="TestPark" type="Node3D" parent="."]
 process_mode = 4
