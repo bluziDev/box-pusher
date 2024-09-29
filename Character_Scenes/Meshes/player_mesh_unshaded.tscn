@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4gsqg8t4cd8x"]
+
+[ext_resource type="PackedScene" uid="uid://beblxkqvd3jqf" path="res://Models/Player/pic_man_test1.glb" id="1_i00lq"]
+[ext_resource type="Material" uid="uid://c6hnxfx63yxvm" path="res://Materials/Surface/Objects/norm_player.tres" id="2_ni06r"]
+
+[node name="Player_Mesh" instance=ExtResource("1_i00lq")]
+
+[node name="Pictoman" parent="Armature/Skeleton3D" index="0"]
+material_override = ExtResource("2_ni06r")

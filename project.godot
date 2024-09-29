@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="box-pusher"
-run/main_scene="res://test.tscn"
+run/main_scene="res://Test_Scenes/test_ao.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 

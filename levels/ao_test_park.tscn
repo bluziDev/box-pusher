@@ -1,8 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://bbynm2advc446"]
+[gd_scene load_steps=22 format=3 uid="uid://bbynm2advc446"]
 
 [ext_resource type="Script" path="res://player_movement.gd" id="1_sxlus"]
-[ext_resource type="Material" uid="uid://db6nkpe80jun6" path="res://unshaded_shadows.tres" id="2_3btiy"]
-[ext_resource type="Material" uid="uid://b3lncwbcu17c4" path="res://depth.tres" id="3_yrkml"]
+[ext_resource type="Material" uid="uid://dtf4ge8xbp1ih" path="res://Materials/Surface/Objects/norm_floor.tres" id="2_jcqks"]
+[ext_resource type="Material" uid="uid://df3t7lipouq8e" path="res://Materials/Post_Processing/edge_ao.tres" id="3_p0idg"]
+[ext_resource type="Material" uid="uid://dhyikb87uqlaj" path="res://Materials/Surface/Objects/norm_wall.tres" id="3_sg8uo"]
+[ext_resource type="Material" uid="uid://p1lmj3knmbxu" path="res://Materials/Surface/Objects/norm_block.tres" id="4_1rdvf"]
 [ext_resource type="PackedScene" uid="uid://clnva5ntrx3nj" path="res://Character_Scenes/Player.tscn" id="4_ljdxa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xdsq1"]
@@ -10,14 +12,15 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_wv6eu"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_vr1di"]
-material = ExtResource("3_yrkml")
+material = ExtResource("3_p0idg")
 flip_faces = true
 size = Vector2(2, 2)
 
-[sub_resource type="Environment" id="Environment_148ox"]
+[sub_resource type="Environment" id="Environment_th6ur"]
 background_mode = 1
 ambient_light_source = 1
-ambient_light_color = Color(0.5, 0.5, 0.5, 1)
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 1.3
 reflected_light_source = 1
 
 [sub_resource type="BoxMesh" id="BoxMesh_ge4ig"]
@@ -69,7 +72,7 @@ floor_check_height = 0.05
 shape = SubResource("CapsuleShape3D_xdsq1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
-material_override = ExtResource("2_3btiy")
+material_override = ExtResource("2_jcqks")
 mesh = SubResource("CapsuleMesh_wv6eu")
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -78,31 +81,19 @@ projection = 1
 size = 13.112
 far = 39.39
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
+[node name="Post_Processing_Quad" type="MeshInstance3D" parent="Camera3D"]
+cast_shadow = 0
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_vr1di")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.91706, 0.270415, -0.293047, 0, 0.734915, 0.678159, 0.398749, 0.621913, -0.673961, 0, 6.38182, 0)
-light_indirect_energy = 0.0
-light_volumetric_fog_energy = 0.0
-light_angular_distance = 68.61
-shadow_enabled = true
-shadow_bias = 0.0
-shadow_normal_bias = 0.0
-shadow_reverse_cull_face = true
-directional_shadow_mode = 0
-directional_shadow_split_1 = 0.009
-directional_shadow_fade_start = 1.0
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_148ox")
+environment = SubResource("Environment_th6ur")
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-material_override = ExtResource("2_3btiy")
+material_override = ExtResource("2_jcqks")
 mesh = SubResource("BoxMesh_ge4ig")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
@@ -112,7 +103,7 @@ shape = SubResource("BoxShape3D_h66a6")
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -3.80223, 2.41912, 3.80223)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
-material_override = ExtResource("2_3btiy")
+material_override = ExtResource("3_sg8uo")
 mesh = SubResource("BoxMesh_xgjl4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
@@ -122,7 +113,7 @@ shape = SubResource("BoxShape3D_lj8xc")
 transform = Transform3D(0.691655, -0.147016, 0.707107, 0.207912, 0.978148, 0, -0.691655, 0.147016, 0.707107, 9.44612, -1.10957, -4.15265)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp"]
-material_override = ExtResource("2_3btiy")
+material_override = ExtResource("3_sg8uo")
 mesh = SubResource("BoxMesh_fhp2n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp"]
@@ -132,7 +123,7 @@ shape = SubResource("BoxShape3D_meith")
 transform = Transform3D(-0.691655, 0.147016, 0.707107, 0.207912, 0.978148, 0, -0.691655, 0.147016, -0.707107, 6.55369, -1.10957, -4.1572)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp3"]
-material_override = ExtResource("2_3btiy")
+material_override = ExtResource("3_sg8uo")
 mesh = SubResource("BoxMesh_fhp2n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp3"]
@@ -142,7 +133,7 @@ shape = SubResource("BoxShape3D_meith")
 transform = Transform3D(-0.691655, 0.147016, -0.707107, 0.207912, 0.978148, -8.88178e-16, 0.691655, -0.147016, -0.707107, 6.5387, -1.10957, -1.60755)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp4"]
-material_override = ExtResource("2_3btiy")
+material_override = ExtResource("3_sg8uo")
 mesh = SubResource("BoxMesh_fhp2n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp4"]
@@ -152,7 +143,7 @@ shape = SubResource("BoxShape3D_meith")
 transform = Transform3D(0.691655, -0.147016, -0.707107, 0.207912, 0.978148, 0, 0.691655, -0.147016, 0.707107, 9.43114, -1.10957, -1.603)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp5"]
-material_override = ExtResource("2_3btiy")
+material_override = ExtResource("3_sg8uo")
 mesh = SubResource("BoxMesh_fhp2n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp5"]
@@ -166,7 +157,7 @@ lock_rotation = true
 linear_damp = 2.459
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Block"]
-material_override = ExtResource("2_3btiy")
+material_override = ExtResource("4_1rdvf")
 mesh = SubResource("BoxMesh_38tud")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Block"]
@@ -176,14 +167,14 @@ shape = SubResource("BoxShape3D_0qf7v")
 transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 1.89391, 0, -9.23079)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp2"]
-material_override = ExtResource("2_3btiy")
+material_override = ExtResource("3_sg8uo")
 mesh = SubResource("BoxMesh_6anb0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp2"]
 shape = SubResource("BoxShape3D_v6q6c")
 
 [node name="Player" parent="." instance=ExtResource("4_ljdxa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24106, -4.21602)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.241, 0.664)
 floor_stop_on_slope = false
 floor_block_on_wall = false
 script = ExtResource("1_sxlus")
