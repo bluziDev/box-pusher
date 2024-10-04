@@ -5,4 +5,4 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_hwr7w")
-shader_parameter/in_col = Color(0.632584, 0.673425, 0.667392, 1)
+shader_parameter/in_col = Color(0.899345, 0.224518, 0.314361, 1)

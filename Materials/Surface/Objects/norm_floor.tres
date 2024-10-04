@@ -5,4 +5,4 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_fddnf")
-shader_parameter/in_col = Color(0.65, 0.65, 0.65, 1)
+shader_parameter/in_col = Color(0.512486, 0.554112, 0.708012, 1)
