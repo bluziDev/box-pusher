@@ -1,11 +1,14 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://df3t7lipouq8e"]
 
-[ext_resource type="Shader" path="res://Materials/Post_Processing/edge_ao.gdshader" id="1_tamhy"]
+[ext_resource type="Shader" path="res://Materials/Post_Processing/edge_ao_2.gdshader" id="1_fccoq"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_tamhy")
-shader_parameter/plane_thresh = 5.62
-shader_parameter/normal_thresh = 0.531
+shader = ExtResource("1_fccoq")
 shader_parameter/edge_color = Color(0, 0, 0, 1)
-shader_parameter/edge_thickness = 0.00127
+shader_parameter/edge_thickness = 0.00174
+shader_parameter/edge_strength = 23.77
+shader_parameter/ao_spread = 0.00672
+shader_parameter/ao_falloff = 52.64
+shader_parameter/ao_strength = 8.0
+shader_parameter/ao_ease = 8.39

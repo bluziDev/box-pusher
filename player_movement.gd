@@ -11,7 +11,7 @@ var target_velocity = Vector3.ZERO
 	
 @onready var cam : Camera3D = get_viewport().get_camera_3d()
 
-func _physics_process(delta):
+func _process(delta):
 	var cam_ratio = 1 / tan(abs(cam.rotation.x))
 	# We create a local variable to store the input direction.
 	var direction = Vector3.ZERO

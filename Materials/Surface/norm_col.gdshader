@@ -42,8 +42,8 @@ uniform vec3 in_col : source_color;
 }*/
 
 vec3 snake_pair(vec3 x,vec3 y,float grid_size){
-	vec3 grid_x = ceil(clamp(x * grid_size, 1.0, grid_size)) - 1.0;
-	vec3 grid_y = ceil(clamp(y * grid_size, 1.0, grid_size)) - 1.0;
+	vec3 grid_x = round(x * (grid_size - 1.0));//ceil(clamp(x * grid_size, 1.0, grid_size)) - 1.0;
+	vec3 grid_y = round(y * (grid_size - 1.0));//ceil(clamp(y * grid_size, 1.0, grid_size)) - 1.0;
 	vec3 y_is_odd = mod(grid_y,2.0);
 	vec3 snake_index = round(grid_y * grid_size + y_is_odd * (grid_size - 1.0) + grid_x * (y_is_odd * -2.0 + 1.0));
 	return snake_index / (pow(grid_size,2.0) - 1.0);
@@ -71,7 +71,7 @@ void fragment() {
 				   ,float(hilbert_index(grid_size,int(round(norm_s.z * float(grid_size - 1))),int(round(in_col.b * float(grid_size - 1))))) / float(maximum_index));*/
 	//vec3 col = vec3(normal_xy_scaled,(sqrt(1.0 - NORMAL.x * NORMAL.x - NORMAL.y * NORMAL.y) + 1.0) / 2.0);
 	
-	float grid_size = 8.0;
+	float grid_size = 9.0;
 	
 	//vec3 col = snake_pair(in_col,norm_s,grid_size);
 	vec3 col = snake_pair(norm_s,in_col,grid_size);
