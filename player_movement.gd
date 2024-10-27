@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@onready var mesh = get_node("Player_Mesh")
+
 # How fast the player moves in meters per second.
 @export var speed = 14
 # The downward acceleration when in the air, in meters per second squared.
@@ -7,11 +9,18 @@ extends CharacterBody3D
 
 @export var floor_check_height : float
 
+@export var rotation_speed : float
+@export var rotation_thresh : float
+@export var rotation_lerp : float
+@onready var constant_interp = mesh.rotation.y
+
 var target_velocity = Vector3.ZERO
 	
 @onready var cam : Camera3D = get_viewport().get_camera_3d()
 
-func _process(delta):
+@onready var last_global_pos = global_position
+
+func _physics_process(delta):
 	var cam_ratio = 1 / tan(abs(cam.rotation.x))
 	# We create a local variable to store the input direction.
 	var direction = Vector3.ZERO
@@ -76,7 +85,21 @@ func _process(delta):
 	#else:
 	#	global_position += velocity
 	
+	#rotate the mesh
+	var target_dir_3D = global_position - last_global_pos
+	var target_dir = Vector2(target_dir_3D.x,target_dir_3D.z)
+	var length_scaled = (target_dir_3D / Vector3(1.0,1.0,cam_ratio)).length()
+	var turn = length_scaled >= rotation_thresh * 0.01
+	var ang_dis = abs(angle_difference(mesh.rotation.y,atan2(target_dir.x,target_dir.y)))
+	if turn && ang_dis > 0:
+		var lerp_weight_constant = min(1,length_scaled * rotation_speed * delta / ang_dis)
+		constant_interp = lerp_angle(constant_interp,atan2(target_dir.x,target_dir.y),lerp_weight_constant)
+		mesh.rotation.y = lerp_angle(mesh.rotation.y,constant_interp,rotation_lerp)
+	#update position for rotation
+	last_global_pos = global_position
+	
 	velocity = target_velocity * delta
+	
 	global_position += velocity
 	
 	#old method

@@ -1,33 +1,17 @@
-[gd_scene load_steps=26 format=3 uid="uid://bbynm2advc446"]
+[gd_scene load_steps=24 format=3 uid="uid://bbynm2advc446"]
 
-[ext_resource type="Script" path="res://player_movement.gd" id="1_sxlus"]
-[ext_resource type="Material" uid="uid://dm3ib54o6y60o" path="res://Materials/Surface/Objects/sharp.tres" id="2_af2da"]
-[ext_resource type="Material" uid="uid://bwsd72kdr573y" path="res://Materials/Surface/Objects/smooth.tres" id="2_asobd"]
+[ext_resource type="Material" uid="uid://d2bn3l0gh815a" path="res://Materials/Surface/Objects/smooth.tres" id="2_asobd"]
 [ext_resource type="Material" uid="uid://df3t7lipouq8e" path="res://Materials/Post_Processing/edge_ao.tres" id="3_p0idg"]
-[ext_resource type="PackedScene" uid="uid://clnva5ntrx3nj" path="res://Character_Scenes/Player.tscn" id="4_ljdxa"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xdsq1"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_wv6eu"]
-radial_segments = 16
-rings = 2
+[ext_resource type="PackedScene" uid="uid://c2j4xhgb37nqy" path="res://Character_Scenes/player_rb.tscn" id="4_7pgq5"]
+[ext_resource type="Material" uid="uid://ch1g4orl4i0pu" path="res://Materials/Surface/Objects/sharp.tres" id="4_dd8rb"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_vr1di"]
 material = ExtResource("3_p0idg")
 flip_faces = true
 size = Vector2(2, 2)
 
-[sub_resource type="Environment" id="Environment_th6ur"]
-background_mode = 1
-ambient_light_source = 1
-ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 1.3
-reflected_light_source = 1
-
 [sub_resource type="BoxMesh" id="BoxMesh_ge4ig"]
 size = Vector3(30, 1, 30)
-subdivide_width = 40
-subdivide_depth = 40
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h66a6"]
 size = Vector3(30, 1, 30)
@@ -45,7 +29,7 @@ size = Vector3(4, 4, 4)
 size = Vector3(4, 4, 4)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_a4hi1"]
-friction = 0.35
+friction = 0.5
 
 [sub_resource type="BoxMesh" id="BoxMesh_38tud"]
 size = Vector3(2, 2, 2)
@@ -62,61 +46,51 @@ size = Vector3(4, 4, 4)
 [sub_resource type="SphereMesh" id="SphereMesh_2ie58"]
 radius = 3.0
 height = 6.0
-radial_segments = 80
-rings = 40
+radial_segments = 32
+rings = 16
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_koi2o"]
 radius = 3.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vjag4"]
-friction = 0.35
 
 [sub_resource type="SphereMesh" id="SphereMesh_34jwg"]
 radius = 1.0
 height = 2.0
+radial_segments = 16
+rings = 8
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_123sn"]
 radius = 1.0
 
+[sub_resource type="SphereMesh" id="SphereMesh_iafy8"]
+radius = 2.0
+height = 4.0
+radial_segments = 32
+rings = 16
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_d4iip"]
+radius = 2.0
+
 [node name="TestPark01" type="Node3D"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-process_mode = 4
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.85548, 2.13924, -3.02859)
-floor_stop_on_slope = false
-floor_block_on_wall = false
-script = ExtResource("1_sxlus")
-speed = 3
-fall_acceleration = 37
-floor_check_height = 0.05
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-shape = SubResource("CapsuleShape3D_xdsq1")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
-material_override = ExtResource("2_asobd")
-mesh = SubResource("CapsuleMesh_wv6eu")
-
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.923879, 0.382684, 0, -0.382684, 0.923879, 0, 13.7472, 31.0649)
+transform = Transform3D(1, 0, 0, 0, 0.923879, 0.382684, 0, -0.382684, 0.923879, 0, 8.50798, 18.4163)
 projection = 1
 fov = 6.9
-size = 13.112
-far = 100.0
+size = 13.282
+far = 165.51
 
 [node name="Post_Processing_Quad" type="MeshInstance3D" parent="Camera3D"]
 cast_shadow = 0
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_vr1di")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_th6ur")
-
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-material_override = ExtResource("2_af2da")
+material_override = ExtResource("4_dd8rb")
 mesh = SubResource("BoxMesh_ge4ig")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
@@ -126,7 +100,7 @@ shape = SubResource("BoxShape3D_h66a6")
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -3.80223, 2.41912, 3.80223)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
-material_override = ExtResource("2_af2da")
+material_override = ExtResource("4_dd8rb")
 mesh = SubResource("BoxMesh_xgjl4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
@@ -136,7 +110,7 @@ shape = SubResource("BoxShape3D_lj8xc")
 transform = Transform3D(0.691655, -0.147016, 0.707107, 0.207912, 0.978148, 0, -0.691655, 0.147016, 0.707107, 9.44612, -1.10957, -4.15265)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp"]
-material_override = ExtResource("2_af2da")
+material_override = ExtResource("4_dd8rb")
 mesh = SubResource("BoxMesh_fhp2n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp"]
@@ -146,7 +120,7 @@ shape = SubResource("BoxShape3D_meith")
 transform = Transform3D(-0.691655, 0.147016, 0.707107, 0.207912, 0.978148, 0, -0.691655, 0.147016, -0.707107, 6.55369, -1.10957, -4.1572)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp3"]
-material_override = ExtResource("2_af2da")
+material_override = ExtResource("4_dd8rb")
 mesh = SubResource("BoxMesh_fhp2n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp3"]
@@ -156,7 +130,7 @@ shape = SubResource("BoxShape3D_meith")
 transform = Transform3D(-0.691655, 0.147016, -0.707107, 0.207912, 0.978148, -8.88178e-16, 0.691655, -0.147016, -0.707107, 6.5387, -1.10957, -1.60755)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp4"]
-material_override = ExtResource("2_af2da")
+material_override = ExtResource("4_dd8rb")
 mesh = SubResource("BoxMesh_fhp2n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp4"]
@@ -166,7 +140,7 @@ shape = SubResource("BoxShape3D_meith")
 transform = Transform3D(0.691655, -0.147016, 0.707107, 0.207912, 0.978148, -1.77636e-15, -0.691655, 0.147016, 0.707107, 4.33447, -1.10957, 0.567512)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp6"]
-material_override = ExtResource("2_af2da")
+material_override = ExtResource("4_dd8rb")
 mesh = SubResource("BoxMesh_fhp2n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp6"]
@@ -176,7 +150,7 @@ shape = SubResource("BoxShape3D_meith")
 transform = Transform3D(0.691655, -0.147016, -0.707107, 0.207912, 0.978148, 0, 0.691655, -0.147016, 0.707107, 9.43114, -1.10957, -1.603)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp5"]
-material_override = ExtResource("2_af2da")
+material_override = ExtResource("4_dd8rb")
 mesh = SubResource("BoxMesh_fhp2n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp5"]
@@ -184,13 +158,12 @@ shape = SubResource("BoxShape3D_meith")
 
 [node name="Block" type="RigidBody3D" parent="."]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 10.7491, 2.36822, 3.23656)
+mass = 60.0
 physics_material_override = SubResource("PhysicsMaterial_a4hi1")
-gravity_scale = 2.75
 lock_rotation = true
-linear_damp = 2.459
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Block"]
-material_override = ExtResource("2_af2da")
+material_override = ExtResource("4_dd8rb")
 mesh = SubResource("BoxMesh_38tud")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Block"]
@@ -200,20 +173,11 @@ shape = SubResource("BoxShape3D_0qf7v")
 transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 1.89391, 0, -9.23079)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp2"]
-material_override = ExtResource("2_af2da")
+material_override = ExtResource("4_dd8rb")
 mesh = SubResource("BoxMesh_6anb0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp2"]
 shape = SubResource("BoxShape3D_v6q6c")
-
-[node name="Player" parent="." instance=ExtResource("4_ljdxa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55063, 0.664)
-floor_stop_on_slope = false
-floor_block_on_wall = false
-script = ExtResource("1_sxlus")
-speed = 3
-fall_acceleration = 37
-floor_check_height = 0.05
 
 [node name="Sphere" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.581, -1.037, 8.25)
@@ -227,9 +191,9 @@ shape = SubResource("SphereShape3D_koi2o")
 
 [node name="Ball" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.799, 3.191, 6.677)
+mass = 60.0
 physics_material_override = SubResource("PhysicsMaterial_vjag4")
-gravity_scale = 2.75
-linear_damp = 2.459
+angular_damp = 1.639
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ball"]
 material_override = ExtResource("2_asobd")
@@ -238,7 +202,18 @@ mesh = SubResource("SphereMesh_34jwg")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ball"]
 shape = SubResource("SphereShape3D_123sn")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.986286, 0.151359, -0.0658126, 0, 0.398749, 0.91706, 0.165048, -0.904483, 0.39328, 0, 5.95148, 0)
-shadow_enabled = true
-directional_shadow_mode = 0
+[node name="Ball_Big" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.249975, 17.3704, -7.16454)
+mass = 273.843
+physics_material_override = SubResource("PhysicsMaterial_vjag4")
+angular_damp = 1.639
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ball_Big"]
+material_override = ExtResource("2_asobd")
+mesh = SubResource("SphereMesh_iafy8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ball_Big"]
+shape = SubResource("SphereShape3D_d4iip")
+
+[node name="Player" parent="." instance=ExtResource("4_7pgq5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4242, 0)

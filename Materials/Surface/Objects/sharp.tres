@@ -1,7 +1,8 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://dm3ib54o6y60o"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ch1g4orl4i0pu"]
+
+[ext_resource type="Shader" path="res://Materials/Surface/Objects/linear_depth.gdshader" id="1_mvwwg"]
 
 [resource]
-shading_mode = 0
-specular_mode = 2
-texture_filter = 0
-disable_receive_shadows = true
+render_priority = 0
+shader = ExtResource("1_mvwwg")
+shader_parameter/edge_strength = 1.0

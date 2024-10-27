@@ -71,3 +71,4 @@ jolt_3d/solver/position_correction=66.6
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 anti_aliasing/screen_space_roughness_limiter/enabled=false
+viewport/hdr_2d=true

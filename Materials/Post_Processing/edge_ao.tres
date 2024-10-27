@@ -6,9 +6,5 @@
 render_priority = 0
 shader = ExtResource("1_fccoq")
 shader_parameter/edge_color = Color(0, 0, 0, 1)
-shader_parameter/edge_thickness = 0.00174
-shader_parameter/edge_strength = 23.77
-shader_parameter/ao_spread = 0.00672
-shader_parameter/ao_falloff = 52.64
-shader_parameter/ao_strength = 8.0
-shader_parameter/ao_ease = 8.39
+shader_parameter/edge_thickness = 0.00148
+shader_parameter/edge_strength = 12.0

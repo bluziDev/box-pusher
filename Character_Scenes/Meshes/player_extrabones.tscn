@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvpxl8ln8sa85"]
+
+[ext_resource type="PackedScene" uid="uid://bgibv4pfjig0t" path="res://Models/Player/player_extrabones.glb" id="1_retft"]
+[ext_resource type="Material" uid="uid://d2bn3l0gh815a" path="res://Materials/Surface/Objects/smooth.tres" id="2_uug6h"]
+[ext_resource type="Script" path="res://Scripts/ik_start.gd" id="3_k5isi"]
+
+[node name="player_extrabones" instance=ExtResource("1_retft")]
+
+[node name="Pictoman" parent="Armature/Skeleton3D" index="0"]
+material_override = ExtResource("2_uug6h")
+cast_shadow = 0
+
+[node name="Leg_Left" type="SkeletonIK3D" parent="Armature/Skeleton3D" index="1"]
+root_bone = &"Femur_Right"
+tip_bone = &"Foot_Right"
+override_tip_basis = false
+use_magnet = true
+magnet = Vector3(0, 0, 10)
+target_node = NodePath("../../IKTarget_Leg_Left")
+script = ExtResource("3_k5isi")
+
+[node name="Leg_Right" type="SkeletonIK3D" parent="Armature/Skeleton3D" index="2"]
+root_bone = &"Femur_Left"
+tip_bone = &"Foot_Left"
+override_tip_basis = false
+use_magnet = true
+magnet = Vector3(0, 0, 10)
+target_node = NodePath("../../IKTarget_Leg_Right")
+script = ExtResource("3_k5isi")
+
+[node name="IKTarget_Leg_Right" type="Marker3D" parent="Armature" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.095, -4.56128, 0)
+
+[node name="IKTarget_Leg_Left" type="Marker3D" parent="Armature" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.08195, -4.56128, 0)

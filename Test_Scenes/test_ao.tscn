@@ -16,13 +16,18 @@ texture_filter = 2
 layout_mode = 0
 offset_right = 960.0
 offset_bottom = 540.0
-scale = Vector2(0.5, 0.5)
 texture = SubResource("ViewportTexture_bftgk")
 
 [node name="SubViewport" type="SubViewport" parent="."]
-handle_input_locally = false
+transparent_bg = true
 mesh_lod_threshold = 0.0
-size = Vector2i(1920, 1080)
+use_hdr_2d = true
+scaling_3d_scale = 2.0
+vrs_update_mode = 2
+canvas_item_default_texture_filter = 0
+positional_shadow_atlas_size = 0
+size = Vector2i(960, 540)
+render_target_clear_mode = 1
 render_target_update_mode = 4
 
 [node name="TestPark" parent="SubViewport" instance=ExtResource("1_7pkc3")]

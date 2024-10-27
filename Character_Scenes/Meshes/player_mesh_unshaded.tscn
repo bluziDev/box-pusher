@@ -1,9 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://d4gsqg8t4cd8x"]
 
 [ext_resource type="PackedScene" uid="uid://beblxkqvd3jqf" path="res://Models/Player/pic_man_test1.glb" id="1_i00lq"]
-[ext_resource type="Material" uid="uid://bwsd72kdr573y" path="res://Materials/Surface/Objects/smooth.tres" id="2_cmebc"]
+[ext_resource type="Material" uid="uid://d2bn3l0gh815a" path="res://Materials/Surface/Objects/smooth.tres" id="2_cmebc"]
 
 [node name="Player_Mesh" instance=ExtResource("1_i00lq")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/2/rotation = Quaternion(-2.66925e-08, -2.66925e-08, -0.707107, 0.707107)
+bones/8/rotation = Quaternion(-2.66925e-08, 2.66925e-08, 0.707107, 0.707107)
+bones/12/rotation = Quaternion(-0.707107, -2.66925e-08, 2.66925e-08, 0.707107)
+bones/15/rotation = Quaternion(-0.707107, 2.66925e-08, -2.66925e-08, 0.707107)
 
 [node name="Pictoman" parent="Armature/Skeleton3D" index="0"]
 material_override = ExtResource("2_cmebc")
