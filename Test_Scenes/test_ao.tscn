@@ -21,10 +21,10 @@ texture = SubResource("ViewportTexture_bftgk")
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
 mesh_lod_threshold = 0.0
-use_hdr_2d = true
-scaling_3d_scale = 2.0
+scaling_3d_scale = 1.25
 vrs_update_mode = 2
 canvas_item_default_texture_filter = 0
+gui_disable_input = true
 positional_shadow_atlas_size = 0
 size = Vector2i(960, 540)
 render_target_clear_mode = 1

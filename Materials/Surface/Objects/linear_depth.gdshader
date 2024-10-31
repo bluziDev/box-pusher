@@ -1,23 +1,21 @@
 shader_type spatial;
 
-render_mode unshaded,fog_disabled;
+render_mode fog_disabled;
 
 uniform float edge_strength : hint_range(0.0, 1.0, 0.01);
+uniform float ambient_light : hint_range(0.0,1.0,0.01);
+uniform float shadow_brightness : hint_range(0.0, 1.0, 0.1);
 
 void vertex() {
 
 }
 
 void fragment() {
-	float linear_depth = -VERTEX.z;//-(vec4(VERTEX,1.0) * PROJECTION_MATRIX).z;
-	ALBEDO = vec3(edge_strength,1.0,linear_depth);
-	//float linear_depth = -(vec4(VERTEX,1.0) * PROJECTION_MATRIX).z;
-	//ALBEDO = vec3(edge_strength,linear_depth / 2.0,linear_depth / 2.0);
-	//float linear_depth_half = -(vec4(VERTEX / 2.0,1.0) * PROJECTION_MATRIX).z;
-	//ALBEDO = vec3(edge_strength,linear_depth_half,linear_depth_half);
+	ALBEDO = vec3(edge_strength,1.0,1.0);
 }
 
-//void light() {
-	// Called for every pixel for every light affecting the material.
-	// Uncomment to replace the default light processing function with this one.
-//}
+void light() {
+	float lighting = min(ambient_light + (1.0 - ambient_light) * ATTENUATION,ambient_light + (1.0 - ambient_light) * (dot(NORMAL,LIGHT)));
+	DIFFUSE_LIGHT += vec3(1.0,1.0,mix(shadow_brightness,1.0,round(lighting)));
+	//DIFFUSE_LIGHT += vec3(1.0,1.0,ceil(max(floor(1.0 - abs(dot(NORMAL, LIGHT))), ATTENUATION)));
+}

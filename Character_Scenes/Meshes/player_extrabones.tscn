@@ -8,7 +8,6 @@
 
 [node name="Pictoman" parent="Armature/Skeleton3D" index="0"]
 material_override = ExtResource("2_uug6h")
-cast_shadow = 0
 
 [node name="Leg_Left" type="SkeletonIK3D" parent="Armature/Skeleton3D" index="1"]
 root_bone = &"Femur_Right"

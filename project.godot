@@ -70,5 +70,14 @@ jolt_3d/solver/position_correction=66.6
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/ssao/quality=0
+environment/ssao/blur_passes=0
+environment/ssil/quality=0
+environment/ssil/blur_passes=0
 anti_aliasing/screen_space_roughness_limiter/enabled=false
-viewport/hdr_2d=true
+environment/glow/upscale_mode=0
+environment/screen_space_reflection/roughness_quality=0
+environment/subsurface_scattering/subsurface_scattering_quality=0
+environment/volumetric_fog/volume_size=16
+environment/volumetric_fog/volume_depth=16
+environment/volumetric_fog/use_filter=0

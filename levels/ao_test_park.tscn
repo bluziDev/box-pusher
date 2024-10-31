@@ -75,14 +75,13 @@ radius = 2.0
 [node name="TestPark01" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.923879, 0.382684, 0, -0.382684, 0.923879, 0, 8.50798, 18.4163)
+transform = Transform3D(1, 0, 0, 0, 0.92388, 0.382683, 0, -0.382683, 0.92388, 0, 8.50798, 18.4163)
 projection = 1
 fov = 6.9
 size = 13.282
-far = 165.51
+far = 110.6
 
 [node name="Post_Processing_Quad" type="MeshInstance3D" parent="Camera3D"]
-cast_shadow = 0
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_vr1di")
 
@@ -217,3 +216,9 @@ shape = SubResource("SphereShape3D_d4iip")
 
 [node name="Player" parent="." instance=ExtResource("4_7pgq5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4242, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.700909, -0.513069, -0.495465, 6.0729e-08, -0.694658, 0.71934, -0.71325, 0.504192, 0.486892, 0, 7.80499, 0)
+shadow_enabled = true
+directional_shadow_mode = 0
+directional_shadow_pancake_size = 0.0

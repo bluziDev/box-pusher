@@ -5,4 +5,6 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_7o8a2")
-shader_parameter/edge_strength = 0.19
+shader_parameter/edge_strength = 0.14
+shader_parameter/ambient_light = 0.5
+shader_parameter/shadow_brightness = 0.4
