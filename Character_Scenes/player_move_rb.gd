@@ -5,7 +5,7 @@ extends RigidBody3D
 # How fast the player accelerates.
 @export var speed_lerp : float
 @export var max_walk_speed : float
-var walk_speed = Vector3(0,0,0)
+@onready var walk_speed = Vector3(0,0,0)
 
 @export var floor_check_height : float
 @export var speed_damp : float
@@ -15,8 +15,9 @@ var walk_speed = Vector3(0,0,0)
 @export var rotation_lerp : float
 @onready var constant_interp = mesh.rotation.y
 @onready var ray = get_node("Ray")
+@onready var ground_norm = Vector3(0,1,0)
 
-var grounded = false
+@onready var grounded = false
 	
 #@onready var cam : Camera3D = get_viewport().get_camera_3d()
 
@@ -36,10 +37,12 @@ func _physics_process(delta):
 		if ray.is_colliding():
 			if (ray.global_position - ray.get_collision_point()).length() <= floor_check_height:
 				grounded = true
+				ground_norm = ray.get_collision_normal()
 	
 	#move the player
 	if grounded:
-		walk_speed = lerp(walk_speed,direction * max_walk_speed,speed_lerp * (delta / 1000))
+		var walk_dir = -direction.cross(ground_norm).cross(ground_norm)
+		walk_speed = lerp(walk_speed,walk_dir * max_walk_speed,speed_lerp * (delta / 1000))
 		apply_central_force(walk_speed * delta)
 		#apply_central_force(Vector3(max_walk_speed,0,0))
 		#damp movement

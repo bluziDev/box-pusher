@@ -58,10 +58,10 @@ void fragment() {
 	//vec3 col = vec3(pair(norm_s.x,in_col.r),pair(norm_s.y,in_col.g),pair(norm_s.z,in_col.b));
 	/*int grid_size = 8;
 	int maximum_index = grid_size * grid_size - 1;
-	
+
 	ivec3 norm_grid = unit_vec_to_grid(norm_s,grid_size);
 	ivec3 col_grid = unit_vec_to_grid(in_col,grid_size);
-	
+
 	vec3 col = vec3(float(hilbert_index(grid_size,norm_grid.x,col_grid.x)) / float(maximum_index)
 				   ,float(hilbert_index(grid_size,norm_grid.y,col_grid.y)) / float(maximum_index)
 				   ,float(hilbert_index(grid_size,norm_grid.z,col_grid.z)) / float(maximum_index));*/
@@ -70,12 +70,12 @@ void fragment() {
 				   ,float(hilbert_index(grid_size,int(round(norm_s.y * float(grid_size - 1))),int(round(in_col.g * float(grid_size - 1))))) / float(maximum_index)
 				   ,float(hilbert_index(grid_size,int(round(norm_s.z * float(grid_size - 1))),int(round(in_col.b * float(grid_size - 1))))) / float(maximum_index));*/
 	//vec3 col = vec3(normal_xy_scaled,(sqrt(1.0 - NORMAL.x * NORMAL.x - NORMAL.y * NORMAL.y) + 1.0) / 2.0);
-	
+
 	float grid_size = 9.0;
-	
+
 	//vec3 col = snake_pair(in_col,norm_s,grid_size);
 	vec3 col = snake_pair(norm_s,in_col,grid_size);
-	
+
 	ALBEDO = col;
 }
 

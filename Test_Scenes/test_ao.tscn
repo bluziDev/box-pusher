@@ -6,6 +6,9 @@
 viewport_path = NodePath("SubViewport")
 
 [node name="Node3D" type="Node3D"]
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 0
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -21,7 +24,7 @@ texture = SubResource("ViewportTexture_bftgk")
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
 mesh_lod_threshold = 0.0
-scaling_3d_scale = 1.25
+scaling_3d_scale = 2.0
 vrs_update_mode = 2
 canvas_item_default_texture_filter = 0
 gui_disable_input = true

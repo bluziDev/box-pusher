@@ -58,14 +58,6 @@ move_back={
 ]
 }
 
-[physics]
-
-3d/physics_engine="JoltPhysics3D"
-jolt_3d/kinematics/recovery_amount=66.6
-jolt_3d/solver/velocity_iterations=4
-jolt_3d/solver/position_iterations=4
-jolt_3d/solver/position_correction=66.6
-
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
@@ -81,3 +73,4 @@ environment/subsurface_scattering/subsurface_scattering_quality=0
 environment/volumetric_fog/volume_size=16
 environment/volumetric_fog/volume_depth=16
 environment/volumetric_fog/use_filter=0
+occlusion_culling/use_occlusion_culling=true

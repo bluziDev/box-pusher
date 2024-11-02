@@ -1,9 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://bbynm2advc446"]
+[gd_scene load_steps=27 format=3 uid="uid://bbynm2advc446"]
 
 [ext_resource type="Material" uid="uid://d2bn3l0gh815a" path="res://Materials/Surface/Objects/smooth.tres" id="2_asobd"]
 [ext_resource type="Material" uid="uid://df3t7lipouq8e" path="res://Materials/Post_Processing/edge_ao.tres" id="3_p0idg"]
+[ext_resource type="Material" uid="uid://v6r74777yxq6" path="res://Materials/Surface/Objects/sharp_dots.tres" id="3_s65xr"]
 [ext_resource type="PackedScene" uid="uid://c2j4xhgb37nqy" path="res://Character_Scenes/player_rb.tscn" id="4_7pgq5"]
 [ext_resource type="Material" uid="uid://ch1g4orl4i0pu" path="res://Materials/Surface/Objects/sharp.tres" id="4_dd8rb"]
+[ext_resource type="Material" uid="uid://gtpc7whhm0t5" path="res://Materials/Surface/Objects/smooth_dots.tres" id="5_ltn3o"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_vr1di"]
 material = ExtResource("3_p0idg")
@@ -72,6 +74,10 @@ rings = 16
 [sub_resource type="SphereShape3D" id="SphereShape3D_d4iip"]
 radius = 2.0
 
+[sub_resource type="Environment" id="Environment_hvkbf"]
+ambient_light_source = 1
+reflected_light_source = 1
+
 [node name="TestPark01" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -79,7 +85,8 @@ transform = Transform3D(1, 0, 0, 0, 0.92388, 0.382683, 0, -0.382683, 0.92388, 0,
 projection = 1
 fov = 6.9
 size = 13.282
-far = 110.6
+near = 4.029
+far = 73.91
 
 [node name="Post_Processing_Quad" type="MeshInstance3D" parent="Camera3D"]
 extra_cull_margin = 16384.0
@@ -156,13 +163,13 @@ mesh = SubResource("BoxMesh_fhp2n")
 shape = SubResource("BoxShape3D_meith")
 
 [node name="Block" type="RigidBody3D" parent="."]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 10.7491, 2.36822, 3.23656)
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 6.049, 4.393, 3.237)
 mass = 60.0
 physics_material_override = SubResource("PhysicsMaterial_a4hi1")
 lock_rotation = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Block"]
-material_override = ExtResource("4_dd8rb")
+material_override = ExtResource("3_s65xr")
 mesh = SubResource("BoxMesh_38tud")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Block"]
@@ -195,7 +202,7 @@ physics_material_override = SubResource("PhysicsMaterial_vjag4")
 angular_damp = 1.639
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ball"]
-material_override = ExtResource("2_asobd")
+material_override = ExtResource("5_ltn3o")
 mesh = SubResource("SphereMesh_34jwg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ball"]
@@ -218,7 +225,10 @@ shape = SubResource("SphereShape3D_d4iip")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4242, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.700909, -0.513069, -0.495465, 6.0729e-08, -0.694658, 0.71934, -0.71325, 0.504192, 0.486892, 0, 7.80499, 0)
+transform = Transform3D(0.906308, 0.271654, -0.323744, 0, 0.766044, 0.642788, 0.422618, -0.582563, 0.694272, 0, 7.80499, 0)
 shadow_enabled = true
 directional_shadow_mode = 0
 directional_shadow_pancake_size = 0.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hvkbf")
