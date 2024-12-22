@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://df3t7lipouq8e"]
+
+[ext_resource type="Shader" path="res://Materials/Post_Processing/post_processing.gdshader" id="1_fccoq"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_fccoq")
+shader_parameter/edge_color = Color(0, 0, 0, 1)
+shader_parameter/edge_thickness = 0.00129
+shader_parameter/edge_strength = 24.0

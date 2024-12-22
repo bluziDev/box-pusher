@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2j4xhgb37nqy"]
+
+[ext_resource type="Script" path="res://Scenes/Character_Scenes/player_move_rb.gd" id="1_0mnu2"]
+[ext_resource type="PackedScene" uid="uid://dvpxl8ln8sa85" path="res://Scenes/Character_Scenes/Meshes/player_extrabones.tscn" id="1_yc8is"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_r1css"]
+friction = 0.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_moraw"]
+
+[node name="Player" type="RigidBody3D"]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 60.0
+physics_material_override = SubResource("PhysicsMaterial_r1css")
+script = ExtResource("1_0mnu2")
+speed_lerp = 10000.0
+max_walk_speed = 250000.0
+floor_check_height = 0.3
+speed_damp = 75000.0
+rotation_speed = 200.0
+rotation_thresh = 0.01
+rotation_lerp = 0.2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_moraw")
+
+[node name="Player_Mesh" parent="." instance=ExtResource("1_yc8is")]
+transform = Transform3D(0.198, 0, 0, 0, 0.198, 0, 0, 0, 0.198, 0, 0, 0)
+
+[node name="Ray" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+target_position = Vector3(0, -10, 0)

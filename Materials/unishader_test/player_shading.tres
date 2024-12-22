@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://snnmaufdja8t"]
+
+[ext_resource type="Material" uid="uid://blt7jg1y2i8n5" path="res://Materials/unishader_test/edges_smooth.tres" id="1_0aroy"]
+[ext_resource type="Shader" path="res://Materials/unishader_test/player.gdshader" id="2_rd7gx"]
+
+[resource]
+render_priority = 1
+next_pass = ExtResource("1_0aroy")
+shader = ExtResource("2_rd7gx")
+shader_parameter/ambient_light = 0.5
+shader_parameter/shadow_brightness = 0.4

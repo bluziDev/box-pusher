@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dnotx2ggpngae"]
+
+[ext_resource type="Shader" path="res://Materials/Surface/old_materials/Test/norm_col.gdshader" id="1_et2dg"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_et2dg")
+shader_parameter/in_col = Color(0.946677, 0.558492, 0.527214, 1)

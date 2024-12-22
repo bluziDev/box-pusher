@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="box-pusher"
-run/main_scene="res://Test_Scenes/test_ao.tscn"
+run/main_scene="res://Scenes/Test_Scenes/test_ao.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -60,17 +60,28 @@ move_back={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+lights_and_shadows/directional_shadow/size=1024
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0
+lights_and_shadows/positional_shadow/soft_shadow_filter_quality=0
+global_illumination/gi/use_half_resolution=true
+camera/depth_of_field/depth_of_field_bokeh_shape=0
+camera/depth_of_field/depth_of_field_bokeh_quality=0
 environment/ssao/quality=0
 environment/ssao/blur_passes=0
 environment/ssil/quality=0
 environment/ssil/blur_passes=0
 anti_aliasing/screen_space_roughness_limiter/enabled=false
+scaling_3d/scale=1.25
 environment/glow/upscale_mode=0
 environment/screen_space_reflection/roughness_quality=0
 environment/subsurface_scattering/subsurface_scattering_quality=0
+environment/subsurface_scattering/subsurface_scattering_depth_scale=0.001
+global_illumination/sdfgi/probe_ray_count=0
+global_illumination/sdfgi/frames_to_converge=0
+global_illumination/sdfgi/frames_to_update_lights=4
 environment/volumetric_fog/volume_size=16
 environment/volumetric_fog/volume_depth=16
 environment/volumetric_fog/use_filter=0
-occlusion_culling/use_occlusion_culling=true

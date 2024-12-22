@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bokm4ojcmqy3w"]
+
+[ext_resource type="Material" uid="uid://bux0lrhjogu7q" path="res://Materials/silhouette-test/silhouette_material.tres" id="1_cvbww"]
+[ext_resource type="Material" uid="uid://bcv6ifw5t5a3e" path="res://Materials/silhouette-test/base_2.tres" id="2_7cceh"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_720lw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4q2qf"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Ball" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.215576)
+material_override = ExtResource("1_cvbww")
+mesh = SubResource("SphereMesh_720lw")
+
+[node name="Block" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.118988)
+material_override = ExtResource("2_7cceh")
+mesh = SubResource("BoxMesh_4q2qf")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.897146, 0.337757, -0.28469, -0.047089, 0.713936, 0.698626, 0.439216, -0.613364, 0.65641, 0, 0, 0)

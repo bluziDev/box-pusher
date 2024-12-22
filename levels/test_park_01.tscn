@@ -1,9 +1,9 @@
 [gd_scene load_steps=20 format=3 uid="uid://cnxesqjmb33bl"]
 
-[ext_resource type="Script" path="res://player_movement.gd" id="1_sm27k"]
-[ext_resource type="Material" uid="uid://db6nkpe80jun6" path="res://unshaded_shadows.tres" id="2_ulbx6"]
-[ext_resource type="Material" uid="uid://b3lncwbcu17c4" path="res://depth.tres" id="3_e3klt"]
-[ext_resource type="PackedScene" uid="uid://clnva5ntrx3nj" path="res://Character_Scenes/Player.tscn" id="4_gvho4"]
+[ext_resource type="Script" path="res://Scripts/player_movement.gd" id="1_sm27k"]
+[ext_resource type="Material" uid="uid://db6nkpe80jun6" path="res://Materials/Surface/old_materials/unshaded_shadows.tres" id="2_ulbx6"]
+[ext_resource type="Material" uid="uid://b3lncwbcu17c4" path="res://Materials/Surface/old_materials/depth.tres" id="3_e3klt"]
+[ext_resource type="PackedScene" uid="uid://clnva5ntrx3nj" path="res://Scenes/Character_Scenes/Player.tscn" id="4_gvho4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xdsq1"]
 

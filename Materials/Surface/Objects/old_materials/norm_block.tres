@@ -1,8 +1,0 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://p1lmj3knmbxu"]
-
-[ext_resource type="Shader" path="res://Materials/Surface/norm_col.gdshader" id="1_hwr7w"]
-
-[resource]
-render_priority = 0
-shader = ExtResource("1_hwr7w")
-shader_parameter/in_col = Color(0.899345, 0.224518, 0.314361, 1)

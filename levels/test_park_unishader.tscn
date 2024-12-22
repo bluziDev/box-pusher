@@ -1,19 +1,11 @@
-[gd_scene load_steps=30 format=3 uid="uid://bbynm2advc446"]
+[gd_scene load_steps=26 format=3 uid="uid://d02m1u1fskojo"]
 
-[ext_resource type="Material" uid="uid://ch1g4orl4i0pu" path="res://Materials/Surface/Object/object_static_sharp.tres" id="2_emrve"]
-[ext_resource type="Material" uid="uid://df3t7lipouq8e" path="res://Materials/Post_Processing/post_processing.tres" id="3_p0idg"]
-[ext_resource type="Material" uid="uid://v6r74777yxq6" path="res://Materials/Surface/Object/object_dynamic_sharp.tres" id="3_s65xr"]
-[ext_resource type="PackedScene" uid="uid://c2j4xhgb37nqy" path="res://Scenes/Character_Scenes/player_rb.tscn" id="4_7pgq5"]
-[ext_resource type="Material" uid="uid://d2bn3l0gh815a" path="res://Materials/Surface/Object/object_static_smooth.tres" id="4_gysnk"]
-[ext_resource type="Material" uid="uid://gtpc7whhm0t5" path="res://Materials/Surface/Object/object_dynamic_smooth.tres" id="5_ltn3o"]
-[ext_resource type="Script" path="res://levels/player_tracker.gd" id="7_thnss"]
-[ext_resource type="Material" uid="uid://do7n5e8d8mtlf" path="res://Materials/Surface/Object/object_grabbed_sharp.tres" id="8_ja20v"]
-[ext_resource type="Material" uid="uid://dbqxtr0irpip" path="res://Materials/Surface/Object/object_grabbed_smooth.tres" id="9_66p4o"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_vr1di"]
-material = ExtResource("3_p0idg")
-flip_faces = true
-size = Vector2(2, 2)
+[ext_resource type="Material" uid="uid://h6xgfjd673ch" path="res://Materials/unishader_test/static_sharp.tres" id="1_802k1"]
+[ext_resource type="Material" uid="uid://q1l67m1amp58" path="res://Materials/unishader_test/dynamic_sharp.tres" id="2_k3cln"]
+[ext_resource type="Material" uid="uid://cmspx8s27nqu7" path="res://Materials/unishader_test/static_smooth.tres" id="3_htoco"]
+[ext_resource type="Material" uid="uid://dk102afc0fi7k" path="res://Materials/unishader_test/dynamic_smooth.tres" id="4_mckel"]
+[ext_resource type="PackedScene" uid="uid://c2j4xhgb37nqy" path="res://Scenes/Character_Scenes/player_rb.tscn" id="6_qyiww"]
+[ext_resource type="Script" path="res://levels/player_tracker.gd" id="7_fgrdv"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ge4ig"]
 size = Vector3(30, 1, 30)
@@ -91,16 +83,11 @@ size = 13.282
 near = 4.029
 far = 73.91
 
-[node name="Post_Processing_Quad" type="MeshInstance3D" parent="Camera3D"]
-cast_shadow = 0
-extra_cull_margin = 16384.0
-mesh = SubResource("QuadMesh_vr1di")
-
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-material_override = ExtResource("2_emrve")
+material_override = ExtResource("1_802k1")
 mesh = SubResource("BoxMesh_ge4ig")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
@@ -110,7 +97,7 @@ shape = SubResource("BoxShape3D_h66a6")
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -3.80223, 2.41912, 3.80223)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
-material_override = ExtResource("2_emrve")
+material_override = ExtResource("1_802k1")
 mesh = SubResource("BoxMesh_xgjl4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
@@ -120,7 +107,7 @@ shape = SubResource("BoxShape3D_lj8xc")
 transform = Transform3D(0.691655, -0.147016, 0.707107, 0.207912, 0.978148, 0, -0.691655, 0.147016, 0.707107, 9.44612, -1.10957, -4.15265)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp"]
-material_override = ExtResource("2_emrve")
+material_override = ExtResource("1_802k1")
 mesh = SubResource("BoxMesh_fhp2n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp"]
@@ -130,7 +117,7 @@ shape = SubResource("BoxShape3D_meith")
 transform = Transform3D(-0.691655, 0.147016, 0.707107, 0.207912, 0.978148, 0, -0.691655, 0.147016, -0.707107, 6.55369, -1.10957, -4.1572)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp3"]
-material_override = ExtResource("2_emrve")
+material_override = ExtResource("1_802k1")
 mesh = SubResource("BoxMesh_fhp2n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp3"]
@@ -140,7 +127,7 @@ shape = SubResource("BoxShape3D_meith")
 transform = Transform3D(-0.691655, 0.147016, -0.707107, 0.207912, 0.978148, -8.88178e-16, 0.691655, -0.147016, -0.707107, 6.5387, -1.10957, -1.60755)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp4"]
-material_override = ExtResource("2_emrve")
+material_override = ExtResource("1_802k1")
 mesh = SubResource("BoxMesh_fhp2n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp4"]
@@ -150,7 +137,7 @@ shape = SubResource("BoxShape3D_meith")
 transform = Transform3D(0.691655, -0.147016, 0.707107, 0.207912, 0.978148, -1.77636e-15, -0.691655, 0.147016, 0.707107, 4.33447, -1.10957, 0.567512)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp6"]
-material_override = ExtResource("2_emrve")
+material_override = ExtResource("1_802k1")
 mesh = SubResource("BoxMesh_fhp2n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp6"]
@@ -160,7 +147,7 @@ shape = SubResource("BoxShape3D_meith")
 transform = Transform3D(0.691655, -0.147016, -0.707107, 0.207912, 0.978148, 0, 0.691655, -0.147016, 0.707107, 9.43114, -1.10957, -1.603)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp5"]
-material_override = ExtResource("2_emrve")
+material_override = ExtResource("1_802k1")
 mesh = SubResource("BoxMesh_fhp2n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp5"]
@@ -173,7 +160,7 @@ physics_material_override = SubResource("PhysicsMaterial_a4hi1")
 lock_rotation = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Block"]
-material_override = ExtResource("3_s65xr")
+material_override = ExtResource("2_k3cln")
 mesh = SubResource("BoxMesh_38tud")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Block"]
@@ -183,7 +170,7 @@ shape = SubResource("BoxShape3D_0qf7v")
 transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 1.89391, 0, -9.23079)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp2"]
-material_override = ExtResource("2_emrve")
+material_override = ExtResource("1_802k1")
 mesh = SubResource("BoxMesh_6anb0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp2"]
@@ -193,7 +180,7 @@ shape = SubResource("BoxShape3D_v6q6c")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.581, -1.037, 8.25)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Sphere"]
-material_override = ExtResource("4_gysnk")
+material_override = ExtResource("3_htoco")
 mesh = SubResource("SphereMesh_2ie58")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sphere"]
@@ -206,7 +193,7 @@ physics_material_override = SubResource("PhysicsMaterial_vjag4")
 angular_damp = 1.639
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ball"]
-material_override = ExtResource("5_ltn3o")
+material_override = ExtResource("4_mckel")
 mesh = SubResource("SphereMesh_34jwg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ball"]
@@ -219,13 +206,13 @@ physics_material_override = SubResource("PhysicsMaterial_vjag4")
 angular_damp = 1.639
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ball_Big"]
-material_override = ExtResource("4_gysnk")
+material_override = ExtResource("3_htoco")
 mesh = SubResource("SphereMesh_iafy8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ball_Big"]
 shape = SubResource("SphereShape3D_d4iip")
 
-[node name="Player" parent="." instance=ExtResource("4_7pgq5")]
+[node name="Player" parent="." instance=ExtResource("6_qyiww")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4242, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -239,7 +226,7 @@ directional_shadow_pancake_size = 0.0
 environment = SubResource("Environment_hvkbf")
 
 [node name="PlayerTracker" type="Node" parent="." node_paths=PackedStringArray("tracking")]
-script = ExtResource("7_thnss")
+script = ExtResource("7_fgrdv")
 tracking = NodePath("../Player")
-materials = Array[ShaderMaterial]([ExtResource("3_s65xr"), ExtResource("5_ltn3o"), ExtResource("8_ja20v"), ExtResource("9_66p4o")])
+materials = Array[ShaderMaterial]([ExtResource("2_k3cln"), ExtResource("4_mckel")])
 proximity_range = 50.0

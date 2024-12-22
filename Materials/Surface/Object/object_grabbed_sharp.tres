@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://do7n5e8d8mtlf"]
+
+[ext_resource type="Shader" path="res://Materials/Surface/3D.gdshader" id="1_puup6"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_puup6")
+shader_parameter/edge_strength = null
+shader_parameter/ambient_light = null
+shader_parameter/shadow_brightness = null
+shader_parameter/dot_grid_size = null
+shader_parameter/dot_radius = null
+shader_parameter/dot_brightness = null
+shader_parameter/player_pos_world = null
+shader_parameter/prox_size = null
+shader_parameter/prox_light = null
+shader_parameter/prox_range = null
+shader_parameter/atten_amp = null
+shader_parameter/atten_freq = null
+shader_parameter/atten_shift = null

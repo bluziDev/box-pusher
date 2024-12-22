@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://wk3i8ne8u7ca"]
+
+[ext_resource type="Material" uid="uid://h6xgfjd673ch" path="res://Materials/unishader_test/static_sharp.tres" id="1_anff8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_j5wba"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_axov1"]
+size = Vector3(4, 4, 4)
+
+[sub_resource type="Environment" id="Environment_d7ljg"]
+ambient_light_source = 1
+reflected_light_source = 1
+
+[node name="TestScene" type="Node3D"]
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_anff8")
+mesh = SubResource("BoxMesh_j5wba")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.723393, 0.458003, 0.516658, -0.690068, 0.45516, 0.562704, 0.022558, -0.763585, 0.645313, 0, 8.81381, 5.82458)
+shadow_enabled = true
+shadow_blur = 0.0
+directional_shadow_pancake_size = 0.0
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.926266, 0.376871, 0, -0.376871, 0.926266, -0.100101, 5.80975, 13.4266)
+projection = 1
+size = 10.0
+
+[node name="Block" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.87305, 1.79602, 0)
+material_override = ExtResource("1_anff8")
+mesh = SubResource("BoxMesh_axov1")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_d7ljg")

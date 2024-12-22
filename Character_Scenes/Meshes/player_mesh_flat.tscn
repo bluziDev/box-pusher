@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://bloy32fjxhsta"]
-
-[ext_resource type="PackedScene" uid="uid://cs51in8hqu210" path="res://Models/Player/pictoman_flat.glb" id="1_2w4t2"]
-[ext_resource type="Material" uid="uid://db6nkpe80jun6" path="res://unshaded_shadows.tres" id="2_i7mx8"]
-
-[node name="pictoman_flat" instance=ExtResource("1_2w4t2")]
-
-[node name="Pictoman" parent="Armature/Skeleton3D" index="0"]
-surface_material_override/0 = ExtResource("2_i7mx8")

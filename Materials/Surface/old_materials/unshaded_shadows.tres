@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://db6nkpe80jun6"]
+
+[ext_resource type="Shader" path="res://Materials/Surface/old_materials/unshaded_shadows.gdshader" id="1_i0nid"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_i0nid")
+shader_parameter/shadow = 0.65

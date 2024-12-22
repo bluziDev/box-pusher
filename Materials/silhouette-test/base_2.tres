@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bcv6ifw5t5a3e"]
+
+[ext_resource type="Shader" path="res://Materials/silhouette-test/other_shader.gdshader" id="1_815jt"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_815jt")
+shader_parameter/albedo = Color(0.18859, 0.418882, 0.47187, 1)
