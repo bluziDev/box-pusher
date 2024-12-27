@@ -1,12 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2j4xhgb37nqy"]
+[gd_scene load_steps=8 format=3 uid="uid://c2j4xhgb37nqy"]
 
 [ext_resource type="Script" path="res://Scenes/Character_Scenes/player_move_rb.gd" id="1_0mnu2"]
 [ext_resource type="PackedScene" uid="uid://dvpxl8ln8sa85" path="res://Scenes/Character_Scenes/Meshes/player_extrabones.tscn" id="1_yc8is"]
+[ext_resource type="Script" path="res://Scenes/Character_Scenes/player_navigation.gd" id="3_cr2yd"]
+[ext_resource type="Material" uid="uid://cmspx8s27nqu7" path="res://Materials/unishader_test/static_smooth.tres" id="4_10xcv"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_r1css"]
 friction = 0.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_moraw"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_sxaeg"]
 
 [node name="Player" type="RigidBody3D"]
 axis_lock_angular_x = true
@@ -33,3 +37,14 @@ transform = Transform3D(0.198, 0, 0, 0, 0.198, 0, 0, 0, 0.198, 0, 0, 0)
 [node name="Ray" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 target_position = Vector3(0, -10, 0)
+
+[node name="PlayerNavigation" type="Node" parent="."]
+script = ExtResource("3_cr2yd")
+pick_distance = 500.0
+minimum_distance = 0.5
+
+[node name="Ray" type="RayCast3D" parent="PlayerNavigation"]
+
+[node name="Marker" type="MeshInstance3D" parent="PlayerNavigation"]
+material_override = ExtResource("4_10xcv")
+mesh = SubResource("SphereMesh_sxaeg")

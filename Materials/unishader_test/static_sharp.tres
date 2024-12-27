@@ -7,5 +7,3 @@
 render_priority = 1
 next_pass = ExtResource("1_4eg5a")
 shader = ExtResource("2_tcluh")
-shader_parameter/ambient_light = 0.5
-shader_parameter/shadow_brightness = 0.4

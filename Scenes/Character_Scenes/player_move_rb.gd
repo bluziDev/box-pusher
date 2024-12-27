@@ -23,7 +23,12 @@ extends RigidBody3D
 
 @onready var last_global_pos = global_position
 
+@onready var navigation = $PlayerNavigation
+
 func _physics_process(delta):
+	#var direction =  Vector3(0,0,0)
+	#if navigation.navigate:
+		#direction = Vector3(1,0,1) * (navigation.marker.global_position - global_position)
 	var direction = Vector3(Input.get_axis("move_left","move_right"),0,Input.get_axis("move_forward","move_back"))
 	if direction.length() > 0:
 		direction = direction.normalized()

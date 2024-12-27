@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bi3a3a7py5fgb"]
+
+[ext_resource type="Shader" path="res://Materials/unishader_test/lighting.gdshader" id="1_ovo2x"]
+
+[resource]
+render_priority = 3
+shader = ExtResource("1_ovo2x")
+shader_parameter/ambient_light = 0.5
+shader_parameter/shadow_brightness = 0.4

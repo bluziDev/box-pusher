@@ -74,7 +74,7 @@ void fragment() {
 	float edge_x = abs(to_west + to_east);
 	float edge_y = abs(to_north + to_south);
 	float edge = (edge_x + edge_y) * global_edge_strength * edge_multiplier;
-	
+
 	ALBEDO = edge_color;
 
 	ALPHA = mix(0.0,1.0,step(1.0,edge));

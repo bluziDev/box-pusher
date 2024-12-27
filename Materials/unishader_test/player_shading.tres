@@ -7,5 +7,3 @@
 render_priority = 1
 next_pass = ExtResource("1_0aroy")
 shader = ExtResource("2_rd7gx")
-shader_parameter/ambient_light = 0.5
-shader_parameter/shadow_brightness = 0.4
