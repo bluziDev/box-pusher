@@ -4,6 +4,6 @@
 [ext_resource type="Shader" path="res://Materials/unishader_test/static.gdshader" id="2_tcluh"]
 
 [resource]
-render_priority = 1
+render_priority = 2
 next_pass = ExtResource("1_4eg5a")
 shader = ExtResource("2_tcluh")

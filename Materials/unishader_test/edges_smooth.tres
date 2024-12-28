@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://bi3a3a7py5fgb" path="res://Materials/unishader_test/lighting.tres" id="1_vvg2l"]
 
 [resource]
-render_priority = 2
+render_priority = 3
 next_pass = ExtResource("1_vvg2l")
 shader = ExtResource("1_jjx7w")
 shader_parameter/edge_strength = 0.14

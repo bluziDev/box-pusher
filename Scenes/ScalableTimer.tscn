@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsl6cfn8ipqua"]
+
+[ext_resource type="Script" path="res://Scenes/scalable_timer.gd" id="1_5pbdg"]
+
+[node name="ScalableTimer" type="Timer"]
+script = ExtResource("1_5pbdg")
+time_scale = 1.0

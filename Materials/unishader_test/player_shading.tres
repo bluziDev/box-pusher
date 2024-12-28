@@ -4,6 +4,6 @@
 [ext_resource type="Shader" path="res://Materials/unishader_test/player.gdshader" id="2_rd7gx"]
 
 [resource]
-render_priority = 1
+render_priority = 2
 next_pass = ExtResource("1_0aroy")
 shader = ExtResource("2_rd7gx")

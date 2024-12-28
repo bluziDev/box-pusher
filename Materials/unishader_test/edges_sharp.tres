@@ -4,7 +4,7 @@
 [ext_resource type="Shader" path="res://Materials/unishader_test/edges.gdshader" id="1_qgxt0"]
 
 [resource]
-render_priority = 2
+render_priority = 3
 next_pass = ExtResource("1_d3h0r")
 shader = ExtResource("1_qgxt0")
 shader_parameter/edge_strength = 1.0

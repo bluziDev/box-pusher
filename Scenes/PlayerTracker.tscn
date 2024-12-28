@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://baa7dantnwnwn"]
+
+[ext_resource type="Script" path="res://levels/player_tracker.gd" id="1_x00vs"]
+[ext_resource type="Material" uid="uid://q1l67m1amp58" path="res://Materials/unishader_test/dynamic_sharp.tres" id="2_vc6k2"]
+[ext_resource type="Material" uid="uid://dk102afc0fi7k" path="res://Materials/unishader_test/dynamic_smooth.tres" id="3_rdjrb"]
+[ext_resource type="PackedScene" uid="uid://bsl6cfn8ipqua" path="res://Scenes/ScalableTimer.tscn" id="4_xcq1r"]
+
+[node name="PlayerTracker" type="Node"]
+script = ExtResource("1_x00vs")
+materials = Array[ShaderMaterial]([ExtResource("2_vc6k2"), ExtResource("3_rdjrb")])
+proximity_range = 50.0
+pulse_amplitude = 1.0
+pulse_thickness = 50.0
+pulse_lifetime = 3.0
+pulse_range = 200.0
+pulse_creation_travel = 40.0
+
+[node name="PulseTimer" parent="." instance=ExtResource("4_xcq1r")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="PulseTimer"]
+
+[node name="Label" type="Label" parent="PulseTimer/CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="timeout" from="PulseTimer" to="." method="new_pulse"]

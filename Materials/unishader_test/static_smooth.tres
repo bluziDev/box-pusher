@@ -4,6 +4,6 @@
 [ext_resource type="Shader" path="res://Materials/unishader_test/static.gdshader" id="2_5hons"]
 
 [resource]
-render_priority = 1
+render_priority = 2
 next_pass = ExtResource("1_lxopl")
 shader = ExtResource("2_5hons")

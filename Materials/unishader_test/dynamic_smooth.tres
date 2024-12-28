@@ -1,11 +1,11 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dk102afc0fi7k"]
 
-[ext_resource type="Material" uid="uid://blt7jg1y2i8n5" path="res://Materials/unishader_test/edges_smooth.tres" id="1_7htqg"]
+[ext_resource type="Material" uid="uid://cmspx8s27nqu7" path="res://Materials/unishader_test/static_smooth.tres" id="1_sy7xs"]
 [ext_resource type="Shader" path="res://Materials/unishader_test/dynamic.gdshader" id="2_qc1rt"]
 
 [resource]
-render_priority = 1
-next_pass = ExtResource("1_7htqg")
+render_priority = 0
+next_pass = ExtResource("1_sy7xs")
 shader = ExtResource("2_qc1rt")
 shader_parameter/dot_grid_size = 9.0
 shader_parameter/dot_radius = 0.0
@@ -14,6 +14,7 @@ shader_parameter/player_pos_world = null
 shader_parameter/prox_size = 4.0
 shader_parameter/prox_light = null
 shader_parameter/prox_range = null
-shader_parameter/atten_amp = null
-shader_parameter/atten_freq = null
-shader_parameter/atten_shift = null
+shader_parameter/pulse_origin_world = null
+shader_parameter/pulse_radius = null
+shader_parameter/pulse_amp = null
+shader_parameter/pulse_thickness = null

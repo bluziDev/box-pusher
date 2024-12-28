@@ -1,6 +1,6 @@
 shader_type spatial;
 
-render_mode fog_disabled,unshaded;//,depth_prepass_alpha;
+render_mode fog_disabled,unshaded,depth_test_disabled;//,depth_prepass_alpha;
 
 //uniform float ambient_light : hint_range(0.0,1.0,0.01);
 //uniform float shadow_brightness : hint_range(0.0, 1.0, 0.1);
@@ -38,12 +38,13 @@ void fragment() {
 	vec2 pulse_origin_view = (vec4(pulse_origin_world * vec3(1.0,-1.0,1.0),1.0) * VIEW_MATRIX).xy;
 	vec2 pulse_origin_screen = view_to_screen(pulse_origin_view * vec2(1.0,-1.0),PROJECTION_MATRIX);
 	float pulse_dis = length(dot_pos - pulse_origin_screen * VIEWPORT_SIZE + node_screen * VIEWPORT_SIZE);
-	size_add = min(size_add,mix(1.0 - pulse_amp,size_add,abs(pulse_dis - pulse_radius) / (pulse_thickness / 2.0)));
+	size_add = min(size_add,mix(size_add * (1.0 - pulse_amp),size_add,abs(pulse_dis - pulse_radius) / (pulse_thickness / 2.0)));
 	
 	float is_dot = sign(size_add + dot_radius - dot_distance);
 	
 	ALBEDO = vec3((is_dot + 1.0) / 2.0 * dot_brightness + (-is_dot + 1.0) / 2.0);
-	//ALPHA = 1.0;
+	//ALBEDO = vec3(dot_brightness);
+	//ALPHA = clamp(is_dot,0.0,1.0);
 }
 
 //void light() {

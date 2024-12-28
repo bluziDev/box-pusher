@@ -4,8 +4,8 @@
 [ext_resource type="Material" uid="uid://q1l67m1amp58" path="res://Materials/unishader_test/dynamic_sharp.tres" id="2_k3cln"]
 [ext_resource type="Material" uid="uid://cmspx8s27nqu7" path="res://Materials/unishader_test/static_smooth.tres" id="3_htoco"]
 [ext_resource type="Material" uid="uid://dk102afc0fi7k" path="res://Materials/unishader_test/dynamic_smooth.tres" id="4_mckel"]
+[ext_resource type="PackedScene" uid="uid://baa7dantnwnwn" path="res://Scenes/PlayerTracker.tscn" id="6_ccnhm"]
 [ext_resource type="PackedScene" uid="uid://c2j4xhgb37nqy" path="res://Scenes/Character_Scenes/player_rb.tscn" id="6_qyiww"]
-[ext_resource type="Script" path="res://levels/player_tracker.gd" id="7_fgrdv"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ge4ig"]
 size = Vector3(30, 1, 30)
@@ -225,8 +225,6 @@ directional_shadow_fade_start = 1.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hvkbf")
 
-[node name="PlayerTracker" type="Node" parent="." node_paths=PackedStringArray("tracking")]
-script = ExtResource("7_fgrdv")
+[node name="PlayerTracker" parent="." node_paths=PackedStringArray("tracking") instance=ExtResource("6_ccnhm")]
 tracking = NodePath("../Player")
-materials = Array[ShaderMaterial]([ExtResource("2_k3cln"), ExtResource("4_mckel")])
-proximity_range = 50.0
+pulse_thickness = 60.0
