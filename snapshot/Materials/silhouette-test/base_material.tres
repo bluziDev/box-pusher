@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dc4e4yatr57bs"]
+
+[ext_resource type="Shader" path="res://Materials/silhouette-test/base_shader.gdshader" id="1_linu5"]
+
+[resource]
+render_priority = 1
+shader = ExtResource("1_linu5")
+shader_parameter/base_color = Color(0.356034, 0.420066, 0.191812, 1)

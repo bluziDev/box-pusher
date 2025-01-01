@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://blt7jg1y2i8n5"]
+
+[ext_resource type="Shader" uid="uid://hy0xrmfp5igg" path="res://Materials/unishader_test/edges.gdshader" id="1_jjx7w"]
+[ext_resource type="Material" uid="uid://bi3a3a7py5fgb" path="res://Materials/unishader_test/lighting.tres" id="1_vvg2l"]
+
+[resource]
+render_priority = 3
+next_pass = ExtResource("1_vvg2l")
+shader = ExtResource("1_jjx7w")
+shader_parameter/edge_strength = 0.14
+shader_parameter/edge_color = null
+shader_parameter/edge_thickness = 0.00129
+shader_parameter/global_edge_strength = 24.0

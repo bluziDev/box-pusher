@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c0175jcaw6oo6"]
+
+[ext_resource type="Shader" path="res://dpedges/edges.gdshader" id="1_isu26"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_isu26")
+shader_parameter/weights_h = Basis(3, 1, 3, 10, 1, 10, 3, 1, 3)
+shader_parameter/weights_v = Basis(3, 10, 3, 1, 1, 1, 3, 10, 3)
+shader_parameter/threshold = 0.12
+shader_parameter/edge_color = null
+shader_parameter/edge_thickness = 1.2

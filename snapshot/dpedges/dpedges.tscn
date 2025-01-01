@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://c74426ybnmlis"]
+
+[ext_resource type="Material" uid="uid://wcw2xbbedw6l" path="res://dpedges/white.tres" id="1_47qr0"]
+[ext_resource type="Material" uid="uid://c0175jcaw6oo6" path="res://dpedges/edges.tres" id="2_50foa"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_iom5s"]
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="Environment" id="Environment_u3a2k"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.5
+
+[node name="Dpedges" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(11.2252, 0, 0, 0, 0.337064, 0, 0, 0, 10.7958, 0, 0, 0)
+material_override = ExtResource("1_47qr0")
+use_collision = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1.53943, 0, 0, 0, 1.53943, 0, 0, 0, 1.53943, -0.704082, 1.00583, 0)
+material_override = ExtResource("1_47qr0")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(1.90842, 0, 0, 0, 1.90842, 0, 0, 0, 1.90842, 2.20141, 2.5213, 0)
+material_override = ExtResource("1_47qr0")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.270598, 0.653281, 0, 0.92388, 0.382683, -0.707107, -0.270598, 0.653281, 9.311, 6.608, 9.311)
+projection = 1
+size = 12.428
+
+[node name="ShaderQuad" type="MeshInstance3D" parent="Camera3D"]
+material_override = ExtResource("2_50foa")
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_iom5s")
+skeleton = NodePath("../..")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.987688, -0.0952313, 0.124108, 0, 0.793353, 0.608761, -0.156434, -0.601267, 0.783586, 0, 0, 0)
+shadow_enabled = true
+shadow_bias = 1.716
+directional_shadow_mode = 1
+directional_shadow_split_1 = 0.009
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_u3a2k")

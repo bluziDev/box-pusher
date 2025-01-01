@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bux0lrhjogu7q"]
+
+[ext_resource type="Material" uid="uid://dc4e4yatr57bs" path="res://Materials/silhouette-test/base_material.tres" id="1_1f4cf"]
+[ext_resource type="Shader" path="res://Materials/silhouette-test/silhouette_shader.gdshader" id="1_1sbkp"]
+
+[resource]
+render_priority = 0
+next_pass = ExtResource("1_1f4cf")
+shader = ExtResource("1_1sbkp")
+shader_parameter/base_color = Color(0.658154, 0.551205, 0.554453, 1)

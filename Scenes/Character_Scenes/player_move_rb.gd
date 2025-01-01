@@ -36,6 +36,7 @@ func _physics_process(delta):
 	#detect ground
 	grounded = false
 	ray.target_position = Vector3(0,-10,0)
+	ray.force_raycast_update()
 	if ray.is_colliding():
 		ray.target_position = -10 * ray.get_collision_normal()
 		ray.force_raycast_update()

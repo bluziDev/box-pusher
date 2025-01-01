@@ -21,11 +21,11 @@ vec3 depth_nl_to_pos_view(vec2 scr_uv, float depth, mat4 pro_mat){
 	return view.xyz;
 }
 
-vec2 view_to_screen(vec2 view_space,mat4 pro_mat){
-	vec4 clip_space = vec4(view_space,0.0,1.0) * pro_mat;
-	vec3 ndc = clip_space.xyz / clip_space.w;
-	return (ndc.xy * 0.5) + 0.5;
-}
+//vec2 view_to_screen(vec2 view_space,mat4 pro_mat){
+	//vec4 clip_space = vec4(view_space,0.0,1.0) * pro_mat;
+	//vec3 ndc = clip_space.xyz / clip_space.w;
+	//return (ndc.xy * 0.5) + 0.5;
+//}
 
 /*float prox_ease(float num){
 	return
@@ -65,6 +65,8 @@ void fragment() {
 	float linear_depth_south = depth_nl_to_pos_view(uv_south,depth_south,PROJECTION_MATRIX).z;
 	float linear_depth_west = depth_nl_to_pos_view(uv_west,depth_west,PROJECTION_MATRIX).z;
 	float linear_depth_east = depth_nl_to_pos_view(uv_east,depth_east,PROJECTION_MATRIX).z;
+	
+	//linear_depth = (linear_depth + linear_depth_east + linear_depth_north + linear_depth_south + linear_depth_west) / 5.0;
 
 	float to_north = (linear_depth_north - linear_depth);
 	float to_south = (linear_depth_south - linear_depth);

@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://h6xgfjd673ch"]
+
+[ext_resource type="Material" uid="uid://lj7py7q1qnj5" path="res://Materials/unishader_test/edges_sharp.tres" id="1_4eg5a"]
+[ext_resource type="Shader" uid="uid://c2fux0x4jsuk8" path="res://Materials/unishader_test/static.gdshader" id="2_tcluh"]
+
+[resource]
+render_priority = 2
+next_pass = ExtResource("1_4eg5a")
+shader = ExtResource("2_tcluh")
