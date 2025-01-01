@@ -3,9 +3,9 @@ extends RigidBody3D
 @onready var mesh = get_node("Player_Mesh")
 
 # How fast the player accelerates.
-@export var speed_lerp : float
-@export var max_walk_speed : float
-@onready var walk_speed = Vector3(0,0,0)
+#@export var speed_lerp : float
+@export var walk_speed : float
+#@onready var walk_speed = Vector3(0,0,0)
 
 @export var floor_check_height : float
 @export var speed_damp : float
@@ -24,6 +24,8 @@ extends RigidBody3D
 @onready var last_global_pos = global_position
 
 @onready var navigation = $PlayerNavigation
+
+signal force_added()
 
 func _physics_process(delta):
 	#var direction =  Vector3(0,0,0)
@@ -48,11 +50,14 @@ func _physics_process(delta):
 	#move the player
 	if grounded:
 		var walk_dir = -direction.cross(ground_norm).cross(ground_norm)
-		walk_speed = lerp(walk_speed,walk_dir * max_walk_speed,speed_lerp * (delta / 1000))
-		apply_central_force(walk_speed * delta)
+		#walk_speed = lerp(walk_speed,walk_dir * max_walk_speed,speed_lerp * delta)
+		var force_add = walk_dir * walk_speed * delta
+		apply_central_force(force_add)
+		emit_signal("force_added",force_add)
 		#apply_central_force(Vector3(max_walk_speed,0,0))
 		#damp movement
-		apply_central_force(-linear_velocity * delta * speed_damp)
+		#apply_central_force(-linear_velocity * delta * speed_damp)
+		linear_velocity /= 1 + speed_damp * delta
 	
 	#rotate the mesh
 	var target_dir_3D = global_position - last_global_pos

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://c2j4xhgb37nqy"]
+[gd_scene load_steps=10 format=3 uid="uid://c2j4xhgb37nqy"]
 
 [ext_resource type="Script" uid="uid://c26pi3fjp3e7e" path="res://Scenes/Character_Scenes/player_move_rb.gd" id="1_0mnu2"]
 [ext_resource type="PackedScene" uid="uid://dvpxl8ln8sa85" path="res://Scenes/Character_Scenes/Meshes/player_extrabones.tscn" id="1_yc8is"]
 [ext_resource type="Script" uid="uid://cy5247l7kuqbf" path="res://Scenes/Character_Scenes/grab.gd" id="3_b6gpi"]
 [ext_resource type="Script" uid="uid://cleglrhsmfly2" path="res://Scenes/Character_Scenes/player_navigation.gd" id="3_cr2yd"]
 [ext_resource type="Material" uid="uid://cmspx8s27nqu7" path="res://Materials/unishader_test/static_smooth.tres" id="4_10xcv"]
+[ext_resource type="PackedScene" uid="uid://c14jtenbdtmb0" path="res://DebugText.tscn" id="4_cct2p"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_r1css"]
 friction = 0.0
@@ -19,11 +20,11 @@ axis_lock_angular_y = true
 axis_lock_angular_z = true
 mass = 60.0
 physics_material_override = SubResource("PhysicsMaterial_r1css")
+can_sleep = false
 script = ExtResource("1_0mnu2")
-speed_lerp = 10000.0
-max_walk_speed = 250000.0
+walk_speed = 30000.0
 floor_check_height = 0.3
-speed_damp = 75000.0
+speed_damp = 5.0
 rotation_speed = 200.0
 rotation_thresh = 0.01
 rotation_lerp = 0.2
@@ -39,7 +40,10 @@ transform = Transform3D(0.198, 0, 0, 0, 0.198, 0, 0, 0, 0.198, 0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.40488, 0)
 target_position = Vector3(0, 0, 5)
 script = ExtResource("3_b6gpi")
-connection_strength = 0.4
+connection_strength = 8.0
+control_force = 1.8
+
+[node name="DebugText" parent="Player_Mesh/Ray" instance=ExtResource("4_cct2p")]
 
 [node name="Ray" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)

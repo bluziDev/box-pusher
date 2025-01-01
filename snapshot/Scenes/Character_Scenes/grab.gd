@@ -6,6 +6,7 @@ var explicit_grabbed = null
 var anchor_offset_character = Vector3(0,0,0)
 var anchor_offset_object = Vector3(0,0,0)
 @export var connection_strength : float
+@export var control_force : float
 
 @onready var character : RigidBody3D = get_parent().get_parent()
 
@@ -32,10 +33,17 @@ func set_anchor(object,anchor : Vector3):
 	anchor_offset_character = anchor - character.global_position
 	anchor_offset_object = anchor - object.global_position
 	
+func character_force_added(force : Vector3):
+	if grabbed:
+		var force_per_mass = force / character.mass
+		grabbed.apply_central_force(force_per_mass * grabbed.mass * control_force)
+	
 func _ready():
 	add_exception(character)
+	character.connect("force_added",character_force_added)
 
 func _physics_process(delta):
+	$DebugText/Label.text = str(grabbed)
 	if grabbed:
 		var character_mass = character.mass
 		var object_mass = grabbed.mass
@@ -48,10 +56,12 @@ func _physics_process(delta):
 		var anchor_difference_object = anchor - object_anchor
 		var desired_projected_velocity_character = anchor_difference_character / delta
 		var desired_projected_velocity_object = anchor_difference_object / delta
-		character.linear_velocity += (desired_projected_velocity_character\
-									- character.linear_velocity.project(anchor_difference_character.normalized())\
-									 ) * connection_strength
-		grabbed.linear_velocity += (desired_projected_velocity_object\
-									- grabbed.linear_velocity.project(anchor_difference_object.normalized())\
-									 ) * connection_strength
+		character.linear_velocity = lerp(character.linear_velocity,desired_projected_velocity_character,connection_strength * delta)
+		grabbed.linear_velocity = lerp(grabbed.linear_velocity,desired_projected_velocity_object,connection_strength * delta)
+		#character.linear_velocity += (desired_projected_velocity_character\
+									#- character.linear_velocity.project(anchor_difference_character.normalized())\
+									 #) * connection_strength
+		#grabbed.linear_velocity += (desired_projected_velocity_object\
+									#- grabbed.linear_velocity.project(anchor_difference_object.normalized())\
+									 #) * connection_strength
 	pass
