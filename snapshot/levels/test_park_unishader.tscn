@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d02m1u1fskojo"]
+[gd_scene load_steps=28 format=3 uid="uid://d02m1u1fskojo"]
 
 [ext_resource type="Material" uid="uid://h6xgfjd673ch" path="res://Materials/unishader_test/static_sharp.tres" id="1_802k1"]
 [ext_resource type="Material" uid="uid://q1l67m1amp58" path="res://Materials/unishader_test/dynamic_sharp.tres" id="2_k3cln"]
@@ -18,6 +18,12 @@ size = Vector3(4, 4, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lj8xc"]
 size = Vector3(4, 4, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qokap"]
+size = Vector3(8, 1, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1iu2e"]
+size = Vector3(8, 1, 8)
 
 [sub_resource type="BoxMesh" id="BoxMesh_fhp2n"]
 size = Vector3(4, 4, 4)
@@ -103,6 +109,16 @@ mesh = SubResource("BoxMesh_xgjl4")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
 shape = SubResource("BoxShape3D_lj8xc")
 
+[node name="Wall2" type="StaticBody3D" parent="."]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 2.36059, 0.811074, -7.78803)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall2"]
+material_override = ExtResource("1_802k1")
+mesh = SubResource("BoxMesh_qokap")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2"]
+shape = SubResource("BoxShape3D_1iu2e")
+
 [node name="Ramp" type="StaticBody3D" parent="."]
 transform = Transform3D(0.691655, -0.147016, 0.707107, 0.207912, 0.978148, 0, -0.691655, 0.147016, 0.707107, 9.44612, -1.10957, -4.15265)
 
@@ -167,7 +183,7 @@ mesh = SubResource("BoxMesh_38tud")
 shape = SubResource("BoxShape3D_0qf7v")
 
 [node name="Ramp2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 1.89391, 0, -9.23079)
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, -1.65077, 0, -12.4389)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp2"]
 material_override = ExtResource("1_802k1")
@@ -197,7 +213,7 @@ mesh = SubResource("SphereMesh_2ie58")
 shape = SubResource("SphereShape3D_koi2o")
 
 [node name="Ball" type="RigidBody3D" parent="." groups=["grabbable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.799, 3.191, 6.677)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.89629, 3.191, -1.75686)
 mass = 120.0
 physics_material_override = SubResource("PhysicsMaterial_vjag4")
 angular_damp = 0.5

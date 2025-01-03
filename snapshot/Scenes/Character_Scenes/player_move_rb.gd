@@ -1,10 +1,12 @@
 extends RigidBody3D
 
 @onready var mesh = get_node("Player_Mesh")
+@onready var grab_ray = mesh.get_node("Ray")
 
 # How fast the player accelerates.
 #@export var speed_lerp : float
 @export var walk_speed : float
+@export var swing_force : float
 #@onready var walk_speed = Vector3(0,0,0)
 
 @export var floor_check_height : float
@@ -45,23 +47,37 @@ func _physics_process(delta):
 		if ray.is_colliding():
 			if (ray.global_position - ray.get_collision_point()).length() <= floor_check_height:
 				grounded = true
-				ground_norm = ray.get_collision_normal()
+			ground_norm = ray.get_collision_normal()
 	
 	#move the player
+	var grabbed = grab_ray.grabbed
 	if grounded:
 		var walk_dir = -direction.cross(ground_norm).cross(ground_norm)
 		#walk_speed = lerp(walk_speed,walk_dir * max_walk_speed,speed_lerp * delta)
 		var force_add = walk_dir * walk_speed * delta
-		apply_central_force(force_add)
+		if !grabbed:
+			apply_central_force(force_add)
 		emit_signal("force_added",force_add)
 		#apply_central_force(Vector3(max_walk_speed,0,0))
 		#damp movement
 		#apply_central_force(-linear_velocity * delta * speed_damp)
 		linear_velocity /= 1 + speed_damp * delta
+	elif grabbed:
+		var force_add = direction * swing_force * delta
+		apply_central_force(force_add)
+		grabbed.apply_central_force(-force_add)
+		#print_debug("swing force added")
 	
 	#rotate the mesh
-	var target_dir_3D = global_position - last_global_pos
-	var target_dir = Vector2(target_dir_3D.x,target_dir_3D.z)
+	var target_dir_3D
+	var target_dir
+	if !grabbed:
+		target_dir_3D = global_position - last_global_pos
+		target_dir = Vector2(target_dir_3D.x,target_dir_3D.z)
+	else:
+		target_dir_3D = grabbed.linear_velocity * delta
+		var grabbed_difference = grabbed.global_position + grab_ray.anchor_offset_object - grab_ray.global_position
+		target_dir = Vector2(grabbed_difference.x,grabbed_difference.z)
 	var length_scaled = target_dir_3D.length()
 	var turn = length_scaled >= rotation_thresh * 0.01
 	var ang_dis = abs(angle_difference(mesh.rotation.y,atan2(target_dir.x,target_dir.y)))

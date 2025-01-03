@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvpxl8ln8sa85"]
+[gd_scene load_steps=5 format=3 uid="uid://dvpxl8ln8sa85"]
 
 [ext_resource type="PackedScene" uid="uid://bgibv4pfjig0t" path="res://Models/Player/player_extrabones.glb" id="1_n11vl"]
+[ext_resource type="Script" uid="uid://duv4c2gmselwj" path="res://Scenes/Character_Scenes/Meshes/player_extrabones.gd" id="2_er6jm"]
 [ext_resource type="Material" uid="uid://60ey0ckwn611" path="res://Materials/unishader_test/player.tres" id="2_ft8kv"]
 [ext_resource type="Script" uid="uid://do0721eudne78" path="res://Scripts/ik_start.gd" id="3_m1vok"]
 
 [node name="player_extrabones" instance=ExtResource("1_n11vl")]
+script = ExtResource("2_er6jm")
+step_time = 0.33
+stance_radius = 1.0
+step_height = 0.5
 
 [node name="Pictoman" parent="Armature/Skeleton3D" index="0"]
 material_override = ExtResource("2_ft8kv")

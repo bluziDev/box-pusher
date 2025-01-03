@@ -23,7 +23,8 @@ physics_material_override = SubResource("PhysicsMaterial_r1css")
 can_sleep = false
 script = ExtResource("1_0mnu2")
 walk_speed = 30000.0
-floor_check_height = 0.3
+swing_force = 30000.0
+floor_check_height = 0.6
 speed_damp = 5.0
 rotation_speed = 200.0
 rotation_thresh = 0.01
@@ -38,15 +39,16 @@ transform = Transform3D(0.198, 0, 0, 0, 0.198, 0, 0, 0, 0.198, 0, 0, 0)
 
 [node name="Ray" type="RayCast3D" parent="Player_Mesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.40488, 0)
-target_position = Vector3(0, 0, 5)
+target_position = Vector3(0, 0, 1)
 script = ExtResource("3_b6gpi")
 connection_strength = 8.0
 control_force = 1.8
+straighten_force = 2.0
 
 [node name="DebugText" parent="Player_Mesh/Ray" instance=ExtResource("4_cct2p")]
 
 [node name="Ray" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 target_position = Vector3(0, -10, 0)
 
 [node name="PlayerNavigation" type="Node" parent="."]
