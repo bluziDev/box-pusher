@@ -56,7 +56,7 @@ func _physics_process(delta):
 		#walk_speed = lerp(walk_speed,walk_dir * max_walk_speed,speed_lerp * delta)
 		var force_add = walk_dir * walk_speed * delta
 		if !grabbed:
-			apply_central_force(force_add)
+			apply_central_impulse.call_deferred(force_add)
 		emit_signal("force_added",force_add)
 		#apply_central_force(Vector3(max_walk_speed,0,0))
 		#damp movement
@@ -64,8 +64,8 @@ func _physics_process(delta):
 		linear_velocity /= 1 + speed_damp * delta
 	elif grabbed:
 		var force_add = direction * swing_force * delta
-		apply_central_force(force_add)
-		grabbed.apply_central_force(-force_add)
+		apply_central_impulse.call_deferred(force_add)
+		grabbed.apply_central_impulse.call_deferred(-force_add)
 		#print_debug("swing force added")
 	
 	#rotate the mesh

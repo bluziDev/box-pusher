@@ -110,7 +110,7 @@ mesh = SubResource("BoxMesh_xgjl4")
 shape = SubResource("BoxShape3D_lj8xc")
 
 [node name="Wall2" type="StaticBody3D" parent="."]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 2.36059, 0.811074, -7.78803)
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 2.36059, 0.770885, -7.78803)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Wall2"]
 material_override = ExtResource("1_802k1")

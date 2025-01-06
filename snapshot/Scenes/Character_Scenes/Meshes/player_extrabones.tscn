@@ -8,8 +8,21 @@
 [node name="player_extrabones" instance=ExtResource("1_n11vl")]
 script = ExtResource("2_er6jm")
 step_time = 0.33
-stance_radius = 1.0
+stance_radius = 1.1
 step_height = 0.5
+foot_radius = 0.83
+bob_height = 0.5
+bob_effect = 4.0
+
+[node name="Armature" parent="." index="0"]
+physics_interpolation_mode = 2
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/5/position = Vector3(0, 1.46589, 0)
+bones/9/position = Vector3(0, 1.56353, 0)
+bones/13/position = Vector3(0, 1.46441, 0)
+bones/17/position = Vector3(0, 1.58092, 0)
+bones/21/position = Vector3(0, 1.58092, 0)
 
 [node name="Pictoman" parent="Armature/Skeleton3D" index="0"]
 material_override = ExtResource("2_ft8kv")
@@ -20,7 +33,7 @@ tip_bone = &"Foot_Right"
 override_tip_basis = false
 use_magnet = true
 magnet = Vector3(0, 0, 10)
-target_node = NodePath("../../IKTarget_Leg_Left")
+target_node = NodePath("../../../IKTarget_Leg_Left")
 script = ExtResource("3_m1vok")
 
 [node name="Leg_Right" type="SkeletonIK3D" parent="Armature/Skeleton3D" index="2"]
@@ -29,11 +42,11 @@ tip_bone = &"Foot_Left"
 override_tip_basis = false
 use_magnet = true
 magnet = Vector3(0, 0, 10)
-target_node = NodePath("../../IKTarget_Leg_Right")
+target_node = NodePath("../../../IKTarget_Leg_Right")
 script = ExtResource("3_m1vok")
 
-[node name="IKTarget_Leg_Right" type="Marker3D" parent="Armature" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.095, -4.56128, 0)
+[node name="IKTarget_Leg_Right" type="Marker3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.095, -3.33786e-06, 0)
 
-[node name="IKTarget_Leg_Left" type="Marker3D" parent="Armature" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.08195, -4.56128, 0)
+[node name="IKTarget_Leg_Left" type="Marker3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.08195, -3.33786e-06, 0)

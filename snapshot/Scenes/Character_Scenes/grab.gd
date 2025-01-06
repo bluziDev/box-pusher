@@ -40,7 +40,7 @@ func set_anchor(object,anchor : Vector3):
 func character_force_added(force : Vector3):
 	if grabbed:
 		var force_per_mass = force / character.mass
-		grabbed.apply_central_force(force_per_mass * grabbed.mass * control_force)
+		grabbed.apply_central_impulse.call_deferred(force_per_mass * grabbed.mass * control_force)
 	
 func _ready():
 	add_exception(character)

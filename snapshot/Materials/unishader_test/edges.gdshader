@@ -65,7 +65,7 @@ void fragment() {
 	float linear_depth_south = depth_nl_to_pos_view(uv_south,depth_south,PROJECTION_MATRIX).z;
 	float linear_depth_west = depth_nl_to_pos_view(uv_west,depth_west,PROJECTION_MATRIX).z;
 	float linear_depth_east = depth_nl_to_pos_view(uv_east,depth_east,PROJECTION_MATRIX).z;
-	
+
 	//linear_depth = (linear_depth + linear_depth_east + linear_depth_north + linear_depth_south + linear_depth_west) / 5.0;
 
 	float to_north = (linear_depth_north - linear_depth);
