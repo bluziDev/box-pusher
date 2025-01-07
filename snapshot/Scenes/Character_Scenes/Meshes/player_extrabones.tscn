@@ -13,6 +13,7 @@ step_height = 0.5
 foot_radius = 0.83
 bob_height = 0.5
 bob_effect = 4.0
+lerp_speed = 8.0
 
 [node name="Armature" parent="." index="0"]
 physics_interpolation_mode = 2
