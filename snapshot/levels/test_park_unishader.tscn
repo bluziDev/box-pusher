@@ -1,5 +1,6 @@
-[gd_scene load_steps=28 format=3 uid="uid://d02m1u1fskojo"]
+[gd_scene load_steps=29 format=3 uid="uid://d02m1u1fskojo"]
 
+[ext_resource type="PhysicsMaterial" uid="uid://c733exomqojb6" path="res://levels/static_physics_material.tres" id="1_1iu2e"]
 [ext_resource type="Material" uid="uid://h6xgfjd673ch" path="res://Materials/unishader_test/static_sharp.tres" id="1_802k1"]
 [ext_resource type="Material" uid="uid://q1l67m1amp58" path="res://Materials/unishader_test/dynamic_sharp.tres" id="2_k3cln"]
 [ext_resource type="Material" uid="uid://cmspx8s27nqu7" path="res://Materials/unishader_test/static_smooth.tres" id="3_htoco"]
@@ -32,7 +33,7 @@ size = Vector3(4, 4, 4)
 size = Vector3(4, 4, 4)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_a4hi1"]
-friction = 0.25
+friction = 0.75
 
 [sub_resource type="BoxMesh" id="BoxMesh_38tud"]
 size = Vector3(2, 2, 2)
@@ -56,6 +57,7 @@ rings = 16
 radius = 3.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vjag4"]
+friction = 0.75
 
 [sub_resource type="SphereMesh" id="SphereMesh_34jwg"]
 radius = 1.0
@@ -91,6 +93,7 @@ far = 73.91
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+physics_material_override = ExtResource("1_1iu2e")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 material_override = ExtResource("1_802k1")
@@ -101,6 +104,7 @@ shape = SubResource("BoxShape3D_h66a6")
 
 [node name="Wall" type="StaticBody3D" parent="."]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -3.80223, 2.41912, 3.80223)
+physics_material_override = ExtResource("1_1iu2e")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
 material_override = ExtResource("1_802k1")
@@ -111,6 +115,7 @@ shape = SubResource("BoxShape3D_lj8xc")
 
 [node name="Wall2" type="StaticBody3D" parent="."]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 2.36059, 0.770885, -7.78803)
+physics_material_override = ExtResource("1_1iu2e")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Wall2"]
 material_override = ExtResource("1_802k1")
@@ -121,6 +126,7 @@ shape = SubResource("BoxShape3D_1iu2e")
 
 [node name="Ramp" type="StaticBody3D" parent="."]
 transform = Transform3D(0.691655, -0.147016, 0.707107, 0.207912, 0.978148, 0, -0.691655, 0.147016, 0.707107, 9.44612, -1.10957, -4.15265)
+physics_material_override = ExtResource("1_1iu2e")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp"]
 material_override = ExtResource("1_802k1")
@@ -131,6 +137,7 @@ shape = SubResource("BoxShape3D_meith")
 
 [node name="Ramp3" type="StaticBody3D" parent="."]
 transform = Transform3D(-0.691655, 0.147016, 0.707107, 0.207912, 0.978148, 0, -0.691655, 0.147016, -0.707107, 6.55369, -1.10957, -4.1572)
+physics_material_override = ExtResource("1_1iu2e")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp3"]
 material_override = ExtResource("1_802k1")
@@ -141,6 +148,7 @@ shape = SubResource("BoxShape3D_meith")
 
 [node name="Ramp4" type="StaticBody3D" parent="."]
 transform = Transform3D(-0.691655, 0.147016, -0.707107, 0.207912, 0.978148, -8.88178e-16, 0.691655, -0.147016, -0.707107, 6.5387, -1.10957, -1.60755)
+physics_material_override = ExtResource("1_1iu2e")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp4"]
 material_override = ExtResource("1_802k1")
@@ -151,6 +159,7 @@ shape = SubResource("BoxShape3D_meith")
 
 [node name="Ramp6" type="StaticBody3D" parent="."]
 transform = Transform3D(0.691655, -0.147016, 0.707107, 0.207912, 0.978148, -1.77636e-15, -0.691655, 0.147016, 0.707107, 4.33447, -1.10957, 0.567512)
+physics_material_override = ExtResource("1_1iu2e")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp6"]
 material_override = ExtResource("1_802k1")
@@ -161,6 +170,7 @@ shape = SubResource("BoxShape3D_meith")
 
 [node name="Ramp5" type="StaticBody3D" parent="."]
 transform = Transform3D(0.691655, -0.147016, -0.707107, 0.207912, 0.978148, 0, 0.691655, -0.147016, 0.707107, 9.43114, -1.10957, -1.603)
+physics_material_override = ExtResource("1_1iu2e")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp5"]
 material_override = ExtResource("1_802k1")
@@ -184,6 +194,7 @@ shape = SubResource("BoxShape3D_0qf7v")
 
 [node name="Ramp2" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, -1.65077, 0, -12.4389)
+physics_material_override = ExtResource("1_1iu2e")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp2"]
 material_override = ExtResource("1_802k1")
@@ -193,7 +204,8 @@ mesh = SubResource("BoxMesh_6anb0")
 shape = SubResource("BoxShape3D_v6q6c")
 
 [node name="Ramp7" type="StaticBody3D" parent="."]
-transform = Transform3D(0.0518227, 0.884666, 0.463337, -0.0161737, 0.464643, -0.885351, -0.998525, 0.0383874, 0.0383874, -9.19145, -0.515159, 5.44346)
+transform = Transform3D(0.053882, 0.787094, 0.614476, -0.00662637, 0.615638, -0.788002, -0.998525, 0.0383874, 0.0383874, -9.19145, 0.00309432, 5.44346)
+physics_material_override = ExtResource("1_1iu2e")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp7"]
 material_override = ExtResource("1_802k1")
@@ -204,6 +216,7 @@ shape = SubResource("BoxShape3D_v6q6c")
 
 [node name="Sphere" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.581, -1.39654, 8.25)
+physics_material_override = ExtResource("1_1iu2e")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Sphere"]
 material_override = ExtResource("3_htoco")
@@ -214,9 +227,9 @@ shape = SubResource("SphereShape3D_koi2o")
 
 [node name="Ball" type="RigidBody3D" parent="." groups=["grabbable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.89629, 3.191, -1.75686)
-mass = 120.0
+mass = 240.0
 physics_material_override = SubResource("PhysicsMaterial_vjag4")
-angular_damp = 0.5
+angular_damp = 0.3
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ball"]
 material_override = ExtResource("4_mckel")

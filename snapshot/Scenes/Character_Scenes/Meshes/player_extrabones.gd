@@ -14,6 +14,7 @@ var armature_offset = $Armature.position
 @export var lerp_speed : float
 var ground_norm = Vector3(0,1,0)
 var character_velocity = Vector3(0,0,0)
+@onready var last_character_position = character.global_position
 
 #var stance_offset = Vector3(0,0,0)
 #var radius_offset = Vector3(0,0,0)
@@ -30,11 +31,12 @@ func _process(delta):
 	#stance_offset = lerp(stance_offset,stance_radius * global_basis.x.cross(ground_norm).cross(ground_norm),lerp_speed * delta)
 	#radius_offset = lerp(radius_offset,foot_radius * Vector3(0,1,0) * scale,lerp_speed * delta)
 	ground_norm = lerp(ground_norm,character.ground_norm,lerp_speed * delta)
-	var target_velocity
-	if character.linear_velocity:
-		target_velocity = character.linear_velocity
-	else:
-		target_velocity = Vector3(0,0,0)
+	var target_velocity = (character.global_position - last_character_position) / delta
+	last_character_position = character.global_position
+	#if character.linear_velocity:
+		#target_velocity = character.linear_velocity
+	#else:
+		#target_velocity = Vector3(0,0,0)
 	character_velocity = lerp(character_velocity,target_velocity,lerp_speed * delta)
 	#var ground_norm = character.ground_norm
 	#var character_velocity = character.linear_velocity

@@ -7,6 +7,8 @@ extends RigidBody3D
 #@export var speed_lerp : float
 @export var walk_speed : float
 @export var swing_force : float
+@export var input_influence_move : float
+@export var input_influence_face : float
 #@onready var walk_speed = Vector3(0,0,0)
 
 @export var floor_check_height : float
@@ -33,9 +35,10 @@ func _physics_process(delta):
 	#var direction =  Vector3(0,0,0)
 	#if navigation.navigate:
 		#direction = Vector3(1,0,1) * (navigation.marker.global_position - global_position)
-	var direction = Vector3(Input.get_axis("move_left","move_right"),0,Input.get_axis("move_forward","move_back"))
-	if direction.length() > 0:
-		direction = direction.normalized()
+	var input_direction = Vector3(Input.get_axis("move_left","move_right"),0,Input.get_axis("move_forward","move_back"))
+	if input_direction.length() > 0:
+		input_direction = input_direction.normalized()
+	var raw_input_direction = input_direction
 	
 	#detect ground
 	grounded = false
@@ -48,32 +51,22 @@ func _physics_process(delta):
 			if (ray.global_position - ray.get_collision_point()).length() <= floor_check_height:
 				grounded = true
 			ground_norm = ray.get_collision_normal()
-	
-	#move the player
+			
+	var walk_dir = -input_direction.cross(ground_norm).cross(ground_norm)
+			
+	var last_floor_direction = linear_velocity.slide(ground_norm).normalized()
+	if last_floor_direction.dot(walk_dir.normalized() * input_direction.length()) > 0 and !input_direction.is_zero_approx():
+		input_direction = lerp(last_floor_direction * Vector3(1,0,1),input_direction,input_influence_move * delta)
+		walk_dir = -input_direction.cross(ground_norm).cross(ground_norm)
+			
 	var grabbed = grab_ray.grabbed
-	if grounded:
-		var walk_dir = -direction.cross(ground_norm).cross(ground_norm)
-		#walk_speed = lerp(walk_speed,walk_dir * max_walk_speed,speed_lerp * delta)
-		var force_add = walk_dir * walk_speed * delta
-		if !grabbed:
-			apply_central_impulse.call_deferred(force_add)
-		emit_signal("force_added",force_add)
-		#apply_central_force(Vector3(max_walk_speed,0,0))
-		#damp movement
-		#apply_central_force(-linear_velocity * delta * speed_damp)
-		linear_velocity /= 1 + speed_damp * delta
-	elif grabbed:
-		var force_add = direction * swing_force * delta
-		apply_central_impulse.call_deferred(force_add)
-		grabbed.apply_central_impulse.call_deferred(-force_add)
-		#print_debug("swing force added")
 	
 	#rotate the mesh
 	var target_dir_3D
 	var target_dir
 	if !grabbed:
 		target_dir_3D = global_position - last_global_pos
-		target_dir = Vector2(target_dir_3D.x,target_dir_3D.z)
+		target_dir = lerp(Vector2(target_dir_3D.x,target_dir_3D.z),Vector2(raw_input_direction.x,raw_input_direction.z),input_influence_face)
 	else:
 		target_dir_3D = grabbed.linear_velocity * delta
 		var grabbed_difference = grabbed.global_position + grab_ray.anchor_offset_object - grab_ray.global_position
@@ -87,3 +80,27 @@ func _physics_process(delta):
 		mesh.rotation.y = lerp_angle(mesh.rotation.y,constant_interp,rotation_lerp)
 	#update position for rotation
 	last_global_pos = global_position
+	
+	#move the player
+	if grounded:
+		#var walk_dir
+		#if grabbed:
+		#else:
+			#todo: dot comparison here to determine magnitude of walk_dir
+			#walk_dir = -mesh.global_basis.z.normalized().cross(ground_norm).cross(ground_norm) * input_direction.length()
+			#var mesh_forward = -mesh.global_basis.z.normalized()
+			#walk_dir = lerp(mesh_forward,input_direction.normalized(),input_influence).cross(ground_norm).cross(ground_norm) * input_direction.length()
+		#walk_speed = lerp(walk_speed,walk_dir * max_walk_speed,speed_lerp * delta)
+		var force_add = walk_dir * walk_speed * delta
+		if !grabbed:
+			apply_central_impulse.call_deferred(force_add)
+		emit_signal("force_added",force_add)
+		#apply_central_force(Vector3(max_walk_speed,0,0))
+		#damp movement
+		#apply_central_force(-linear_velocity * delta * speed_damp)
+		linear_velocity /= 1 + speed_damp * delta
+	elif grabbed:
+		var force_add = input_direction * swing_force * delta
+		apply_central_impulse.call_deferred(force_add)
+		grabbed.apply_central_impulse.call_deferred(-force_add)
+		#print_debug("swing force added")
