@@ -35,6 +35,8 @@ func _physics_process(delta):
 	#var direction =  Vector3(0,0,0)
 	#if navigation.navigate:
 		#direction = Vector3(1,0,1) * (navigation.marker.global_position - global_position)
+		
+		
 	var input_direction = Vector3(Input.get_axis("move_left","move_right"),0,Input.get_axis("move_forward","move_back"))
 	if input_direction.length() > 0:
 		input_direction = input_direction.normalized()
@@ -42,15 +44,22 @@ func _physics_process(delta):
 	
 	#detect ground
 	grounded = false
+	ground_norm = Vector3(0,1,0)
 	ray.target_position = Vector3(0,-10,0)
 	ray.force_raycast_update()
 	if ray.is_colliding():
+		ground_norm = ray.get_collision_normal()
+		if (ray.global_position - ray.get_collision_point()).length() <= floor_check_height:
+			grounded = true
 		ray.target_position = -10 * ray.get_collision_normal()
 		ray.force_raycast_update()
 		if ray.is_colliding():
+			ground_norm = ray.get_collision_normal()
 			if (ray.global_position - ray.get_collision_point()).length() <= floor_check_height:
 				grounded = true
-			ground_norm = ray.get_collision_normal()
+				
+	var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+	apply_central_force(gravity * -ground_norm * mass)
 			
 	var walk_dir = -input_direction.cross(ground_norm).cross(ground_norm)
 			

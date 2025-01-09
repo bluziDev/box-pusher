@@ -15,12 +15,11 @@ friction = 0.5
 [sub_resource type="SphereMesh" id="SphereMesh_sxaeg"]
 
 [node name="Player" type="RigidBody3D"]
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
 mass = 60.0
 physics_material_override = SubResource("PhysicsMaterial_r1css")
+gravity_scale = 0.0
 can_sleep = false
+lock_rotation = true
 script = ExtResource("1_0mnu2")
 walk_speed = 1250.0
 swing_force = 1000.0
@@ -62,5 +61,6 @@ minimum_distance = 0.5
 [node name="Ray" type="RayCast3D" parent="PlayerNavigation"]
 
 [node name="Marker" type="MeshInstance3D" parent="PlayerNavigation"]
+visible = false
 material_override = ExtResource("4_10xcv")
 mesh = SubResource("SphereMesh_sxaeg")

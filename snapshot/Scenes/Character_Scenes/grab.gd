@@ -57,7 +57,9 @@ func _physics_process(delta):
 		var shoulder_to_object = object_anchor - global_position
 		var character_anchor = global_position + min(slack,shoulder_to_object.length()) * shoulder_to_object.normalized()
 		if character.grounded:
-			character_anchor = lerp(character_anchor,global_position - slack * anchor_normal,straightness)
+			var straight_anchor = global_position - slack * anchor_normal
+			straight_anchor.y = character_anchor.y
+			character_anchor = lerp(character_anchor,straight_anchor,straightness)
 		#character_anchor = lerp(character_anchor,object_anchor + (character_anchor - object_anchor).length() * anchor_normal,straighten_force * delta)
 		var character_weighted_anchor = character_anchor * character.mass
 		var object_weighted_anchor = object_anchor * object_mass
