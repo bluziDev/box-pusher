@@ -25,7 +25,7 @@ walk_speed = 1250.0
 swing_force = 1000.0
 input_influence_move = 16.0
 input_influence_face = 0.5
-floor_check_height = 0.6
+floor_check_height = 0.1
 speed_damp = 5.0
 rotation_speed = 200.0
 rotation_thresh = 0.01
@@ -48,6 +48,9 @@ slack = 1.0
 straightness = 0.5
 
 [node name="DebugText" parent="Player_Mesh/Ray" instance=ExtResource("4_cct2p")]
+visible = false
+
+[node name="DebugText" parent="Player_Mesh" instance=ExtResource("4_cct2p")]
 
 [node name="Ray" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -64,3 +67,6 @@ minimum_distance = 0.5
 visible = false
 material_override = ExtResource("4_10xcv")
 mesh = SubResource("SphereMesh_sxaeg")
+
+[node name="DebugText" parent="." instance=ExtResource("4_cct2p")]
+visible = false

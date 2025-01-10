@@ -26,7 +26,7 @@ func get_lift(x : float,height : float):
 	
 func _process(delta):
 	cycle_position = fmod(cycle_position + delta / step_time,2)
-	var stance_offset = stance_radius * global_basis.x.cross(ground_norm).cross(ground_norm)
+	var stance_offset = stance_radius * global_basis.x.cross(ground_norm).cross(-ground_norm).normalized() * scale
 	var radius_offset = foot_radius * Vector3(0,1,0) * scale
 	#stance_offset = lerp(stance_offset,stance_radius * global_basis.x.cross(ground_norm).cross(ground_norm),lerp_speed * delta)
 	#radius_offset = lerp(radius_offset,foot_radius * Vector3(0,1,0) * scale,lerp_speed * delta)
@@ -47,8 +47,9 @@ func _process(delta):
 	var lift_right = Vector3(0,0,0)
 	var bob = Vector3(0,0,0)
 	
+	$DebugText/Label.text = str(character_velocity)
 	#wtf is Vector3(nan,nan,nan)???
-	if character_velocity:
+	if character_velocity.length() > 0 and !is_nan(character_velocity.x):
 		var step_radius = character_velocity.length() * step_time / 2
 		var move_direction = character_velocity.normalized()
 		var step_position_right = abs(1 - cycle_position) * 2 - 1
@@ -79,11 +80,11 @@ func _process(delta):
 	
 	#var position_left = left_target.global_position - origin_interpolated
 	#var new_position_left = lerp(position_left,spread_left + lift_left + radius_offset - stance_offset,lerp_speed * delta)
-	left_target.global_transform = global_transform_interpolated.translated(spread_left + lift_left + radius_offset - stance_offset)
+	left_target.global_transform = global_transform_interpolated.translated(spread_left + lift_left + radius_offset + stance_offset)
 	
 	#var position_right = right_target.global_position - origin_interpolated
 	#var new_position_right = lerp(position_right,spread_right + lift_right + radius_offset + stance_offset,lerp_speed * delta)
-	right_target.global_transform = global_transform_interpolated.translated(spread_right + lift_right + radius_offset + stance_offset)
+	right_target.global_transform = global_transform_interpolated.translated(spread_right + lift_right + radius_offset - stance_offset)
 
 #func _physics_process(delta):
 	##todo: clamp relative travel

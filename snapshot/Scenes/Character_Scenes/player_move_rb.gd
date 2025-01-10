@@ -45,28 +45,25 @@ func _physics_process(delta):
 	#detect ground
 	grounded = false
 	ground_norm = Vector3(0,1,0)
-	ray.target_position = Vector3(0,-10,0)
-	ray.force_raycast_update()
+	#ray.target_position = Vector3(0,-10,0)
+	#ray.force_raycast_update()
 	if ray.is_colliding():
-		ground_norm = ray.get_collision_normal()
-		if (ray.global_position - ray.get_collision_point()).length() <= floor_check_height:
+		var collision_norm = ray.get_collision_normal()
+		var check_height = abs(ray.position.y) / Vector3(0,1,0).dot(collision_norm) + floor_check_height
+		if (ray.global_position - ray.get_collision_point()).length() <= check_height:
 			grounded = true
-		ray.target_position = -10 * ray.get_collision_normal()
-		ray.force_raycast_update()
-		if ray.is_colliding():
-			ground_norm = ray.get_collision_normal()
-			if (ray.global_position - ray.get_collision_point()).length() <= floor_check_height:
-				grounded = true
+			ground_norm = collision_norm
 				
 	var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-	apply_central_force(gravity * -ground_norm * mass)
+	apply_central_force(9.8 * -ground_norm * mass)
+	
+	var walk_dir = input_direction.cross(ground_norm).cross(-ground_norm).normalized() * input_direction.length()
 			
-	var walk_dir = -input_direction.cross(ground_norm).cross(ground_norm)
-			
-	var last_floor_direction = linear_velocity.slide(ground_norm).normalized()
-	if last_floor_direction.dot(walk_dir.normalized() * input_direction.length()) > 0 and !input_direction.is_zero_approx():
-		input_direction = lerp(last_floor_direction * Vector3(1,0,1),input_direction,input_influence_move * delta)
-		walk_dir = -input_direction.cross(ground_norm).cross(ground_norm)
+	#$DebugText/Label.text = str(walk_dir)
+	var last_direction = (global_position - last_global_pos).normalized()
+	if last_direction.dot(walk_dir) > 0:
+		walk_dir = lerp(last_direction * walk_dir.length(),walk_dir,input_influence_move * delta)
+		
 			
 	var grabbed = grab_ray.grabbed
 	
